@@ -1,0 +1,49 @@
+<div>
+  <!-- Download Button -->
+  <div class="text-center mb-4">
+    <h1 class="text-xl font-bold mb-2 inline-block border-b-2 border-gray-300">Summary Report</h1>
+  </div>
+
+  <!-- Search Input -->
+  <div class="mb-4 search-container">
+    <input
+      type="text"
+      placeholder="Search Branch Name..."
+      [(ngModel)]="searchTerm"
+      (input)="filterData()"
+      class="border p-2 rounded w-3/12"
+    />
+  </div>
+
+  <!-- Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Branch Name</th>
+        <th *ngFor="let group of groups" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">{{ group.group_name }}</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let branch of filteredBranches">
+        <td style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">{{ branch.branch_name }}</td>
+        <td *ngFor="let group of groups">
+          {{ assetCounts[branch.branch_name][group.group_name] || 0 }}
+        </td>
+        <td>{{ rowTotals[branch.branch_name] || 0 }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td><strong>Total</strong></td>
+        <td *ngFor="let group of groups">
+          {{ columnTotals[group.group_name] || 0 }}
+        </td>
+        <td><strong>{{ grandTotal }}</strong></td>
+      </tr>
+    </tfoot>
+  </table>
+  <div class="download-container">
+    <button (click)="downloadTableData()" class="download-button">Download</button>
+  </div>
+</div>

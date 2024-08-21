@@ -20,6 +20,11 @@ interface Asset {
   serial_number: string;
   group_name: string;
   sub_branch: string;
+  OS?: string;
+  RAM?: string;
+  Storage?: string;
+  work_order?: string;
+  challan_no?: string;
 }
 
 export interface Branch {
@@ -54,7 +59,7 @@ export class EquipmentComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.assetForm = this.fb.group({
-      branch_id: ['', Validators.required],
+       branch_id: ['', Validators.required],
       branch_name: ['', Validators.required],
       group_id: ['', Validators.required],
       desktop_name: ['', Validators.required],
@@ -64,9 +69,14 @@ export class EquipmentComponent implements OnInit {
       price: ['', Validators.required],
       purchase_date: ['', Validators.required],
       status: ['', Validators.required],
-      asset_get_by: ['', Validators.required],  // This will now be a text input
+      asset_get_by: ['', Validators.required],
       serial_number: ['', Validators.required],
       sub_branch: ['', Validators.required],
+      OS: ['', Validators.required],
+      RAM: ['', Validators.required],
+      Storage: ['', Validators.required],
+      work_order: ['', Validators.required],
+      challan_no: ['', Validators.required],
     });
   }
 

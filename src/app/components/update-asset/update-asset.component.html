@@ -59,6 +59,11 @@
             <th>Purchase Date</th>
             <th>Status</th>
             <th>Asset Value</th>
+            <th>Operating System</th>
+            <th>RAM</th>
+            <th>Storage</th>
+            <th>Work Order</th>
+            <th>Challan No.</th>
             <!-- <th>Asset Get By</th> -->
   
   
@@ -82,7 +87,14 @@
             <td>{{ asset.purchase_date | date }}</td>
             <td>{{ asset.status }}</td>
             <td>{{ calculateAssetValue(asset.purchase_date, asset.price) }}</td>
-            <!-- <td>{{ asset.asset_get_by }}</td> -->
+            <td>{{ asset.OS }} </td>
+            <td>{{ asset.RAM }} </td>
+            <td>{{ asset.Storage }} </td>
+            <td>{{ asset.work_order }}</td>
+            <td>{{ asset.challan_no }}</td>
+            
+            
+            
   
   
             <td>
@@ -101,7 +113,7 @@
   <!-- Modal for Editing Asset -->
   <div *ngIf="isEdit" class="fixed inset-0 flex items-center justify-center z-50">
     <div class="modal-overlay absolute inset-0 bg-gray-900 opacity-50"></div>
-    <div class="modal-content relative bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
+    <div class="modal-content relative bg-white p-6 rounded-lg shadow-lg" style="width: 70%;">
       <h2 class="text-xl font-semibold mb-4">Update Asset</h2>
       <form [formGroup]="editAssetForm" (ngSubmit)="onSubmit()">
   
@@ -113,17 +125,7 @@
               <option *ngFor="let branch of branches" [value]="branch.branch_id">{{ branch.branch_name }}</option>
             </select>
           </div>
-  
-          <div class="form-group mb-4 w-full sm:w-1/2 px-2">
-            <label for="group" class="block text-gray-700">Asset Group:</label>
-            <select id="group" formControlName="group_id" class="form-control mt-1 w-full" >
-              <option *ngFor="let group of groups" [value]="group.group_id">{{ group.group_name }}</option>
-            </select>
-          </div>
-  
-        </div>
-  
-        <div class="form-row">
+
           <div class="form-group mb-4 w-full sm:w-1/2 px-2">
             <label for="sub_branch" class="block text-gray-700">Division:</label>
             <select id="sub_branch" formControlName="sub_branch" class="form-control mt-1 w-full" >
@@ -131,28 +133,64 @@
             </select>
           </div>
   
+
+        </div>
+  
+        <div class="form-row">
+
+          <div class="form-group mb-4 w-full sm:w-1/2 px-2">
+            <label for="group" class="block text-gray-700">Asset Group:</label>
+            <select id="group" formControlName="group_id" class="form-control mt-1 w-full" >
+              <option *ngFor="let group of groups" [value]="group.group_id">{{ group.group_name }}</option>
+            </select>
+          </div>
+  
+  
           <div class="form-group mb-4 w-full sm:w-1/2 px-2">
             <label for="desktop_name" class="block text-gray-700">Device Name</label>
             <input id="desktop_name" formControlName="desktop_name" type="text" class="form-control mt-1 w-full" >
           </div>
-        </div>
-  
-        <div class="form-row">
+
           <div class="form-group mb-4 w-full sm:w-1/2 px-2">
             <label for="configuration" class="block text-gray-700">Model Name / Configuration::</label>
             <input id="configuration" formControlName="configuration" type="text" class="form-control mt-1 w-full" >
           </div>
+
+
+
+
+        </div>
   
+        <div class="form-row">
+
+
+          <div class="form-group mb-4 w-full sm:w-1/2 px-2">
+            <label for="OS">Operating System:</label>
+            <input id="OS" formControlName="OS" class="form-control">
+          </div>
          
-            <div class="form-group mb-4 w-full sm:w-1/2 px-2">
-                <label for="tag_name" class="block text-gray-700">Tag Name:</label>
-                <input id="tag_name" formControlName="tag_name" type="text" class="form-control mt-1 w-full" >
+  
+
+              <div class="form-group mb-4 w-full sm:w-1/2 px-2">
+                <label for="RAM">RAM:</label>
+                <input id="RAM" formControlName="RAM" class="form-control">
               </div>
+        
+              <div class="form-group mb-4 w-full sm:w-1/2 px-2">
+                <label for="Storage">Storage:</label>
+                <input id="Storage" formControlName="Storage" class="form-control">
+              </div>
+    
   
          
         </div>
   
         <div class="form-row">
+
+          <div class="form-group mb-4 w-full sm:w-1/2 px-2">
+            <label for="tag_name" class="block text-gray-700">Tag Name:</label>
+            <input id="tag_name" formControlName="tag_name" type="text" class="form-control mt-1 w-full" >
+          </div>
           <div class="form-group mb-4 w-full sm:w-1/2 px-2">
             <label for="warranty" class="block text-gray-700">Warranty:</label>
             <input id="warranty" formControlName="warranty" type="date" class="form-control mt-1 w-full" >
@@ -190,6 +228,27 @@
             <label for="serial_number" class="block text-gray-700">Serial Number:</label>
             <input id="serial_number" formControlName="serial_number" type="text" class="form-control mt-1 w-full" >
           </div>
+        </div>
+
+        <div class="form-row">
+
+    
+          <div class="form-group mb-4 w-full sm:w-1/2 px-2">
+            <label for="work_order">Work Order:</label>
+            <input id="work_order" formControlName="work_order" class="form-control">
+          </div>
+    
+          <div class="form-group mb-4 w-full sm:w-1/2 px-2">
+            <label for="challan_no">Challan No:</label>
+            <input id="challan_no" formControlName="challan_no" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-row">
+         
+
+    
+  
         </div>
   
         <div class="flex justify-end gap-4">

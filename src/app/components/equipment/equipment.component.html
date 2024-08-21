@@ -1,7 +1,7 @@
 <div class="asset-container">
-  <h1 class="branch-heading">New Asset</h1>
+  <h1 class="form-heading">New Asset</h1>
 
-  <form [formGroup]="assetForm" (ngSubmit)="onSubmit()" style="margin-top:40px">
+  <form [formGroup]="assetForm" (ngSubmit)="onSubmit()" class="asset-form">
     <div class="form-row">
       <div class="form-group">
         <label for="branch_id">Branch:</label>
@@ -14,18 +14,12 @@
         <label for="branch_name">Owner Name:</label>
         <input id="branch_name" formControlName="branch_name" class="form-control" readonly>
       </div>
-    </div>
 
-    <div class="form-row">
       <div class="form-group">
         <label for="sub_branch">Division:</label>
         <select id="sub_branch" formControlName="sub_branch" class="form-control">
           <option *ngFor="let option of subBranchOptions" [value]="option">{{ option }}</option>
         </select>
-      </div>
-
-      <div class="form-group">
-        <!-- Empty div for alignment or future use -->
       </div>
     </div>
 
@@ -41,38 +35,58 @@
         <label for="desktop_name">Device Name:</label>
         <input id="desktop_name" formControlName="desktop_name" class="form-control">
       </div>
-    </div>
 
-    <div class="form-row">
       <div class="form-group">
         <label for="configuration">Model Name / Configuration:</label>
         <input id="configuration" formControlName="configuration" class="form-control">
       </div>
+    </div>
 
+    <div class="form-row">
       <div class="form-group">
         <label for="tag_name">Tag Name:</label>
         <select id="tag_name" formControlName="tag_name" class="form-control">
           <option value="Routed To FAD">Routed To FAD</option>
         </select>
       </div>
+
+      <div class="form-group">
+        <label for="serial_number">Serial Number:</label>
+        <input id="serial_number" formControlName="serial_number" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="OS">Operating System:</label>
+        <input id="OS" formControlName="OS" class="form-control">
+      </div>
     </div>
 
     <div class="form-row">
+      <div class="form-group">
+        <label for="RAM">RAM:</label>
+        <input id="RAM" formControlName="RAM" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="Storage">Storage:</label>
+        <input id="Storage" formControlName="Storage" class="form-control">
+      </div>
+
       <div class="form-group">
         <label for="warranty">Warranty (End of Support):</label>
         <input id="warranty" formControlName="warranty" class="form-control" type="date">
       </div>
-
-      <div class="form-group">
-        <label for="price">Price:</label>
-        <input id="price" formControlName="price" class="form-control">
-      </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
+        <label for="price">Price:</label>
+        <input id="price" formControlName="price" class="form-control" type="number">
+      </div>
+
+      <div class="form-group">
         <label for="purchase_date">Purchase Date:</label>
-        <input id="purchase_date" formControlName="purchase_date" type="date" class="form-control">
+        <input id="purchase_date" formControlName="purchase_date" class="form-control" type="date">
       </div>
 
       <div class="form-group">
@@ -86,19 +100,23 @@
 
     <div class="form-row">
       <div class="form-group">
-        <label for="asset_get_by">Purchase From:</label>
+        <label for="asset_get_by">Asset Get By:</label>
         <input id="asset_get_by" formControlName="asset_get_by" class="form-control">
       </div>
 
       <div class="form-group">
-        <label for="serial_number">Serial Number:</label>
-        <input id="serial_number" formControlName="serial_number" class="form-control">
+        <label for="work_order">Work Order:</label>
+        <input id="work_order" formControlName="work_order" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="challan_no">Challan No:</label>
+        <input id="challan_no" formControlName="challan_no" class="form-control">
       </div>
     </div>
 
-    <!-- Submit Button -->
-    <button type="submit" class="submit-button" [ngClass]="{'disabled-button': assetForm.invalid}">
-      {{ isEdit ? 'Update Asset' : 'Add Asset' }}
-    </button>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">{{ isEdit ? 'Update' : 'Add' }} Asset</button>
+    </div>
   </form>
 </div>

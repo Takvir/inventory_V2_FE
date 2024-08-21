@@ -18,6 +18,11 @@ export interface Asset {
   asset_get_by: string;
   serial_number: string;
   sub_branch: string;
+  OS: string;
+  RAM: string;
+  Storage: string;
+  work_order: string;
+  challan_no: string;
 }
 
 @Injectable({

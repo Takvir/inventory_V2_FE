@@ -22,6 +22,11 @@ interface Asset {
   serial_number: string;
   group_name: string;
   sub_branch: string;
+  OS?: string;
+  RAM?: string;
+  Storage?: string;
+  work_order?: string;
+  challan_no?: string;
 }
 
 export interface Branch {
@@ -81,6 +86,11 @@ export class OldEquipmentComponent implements OnInit {
       asset_get_by: ['', Validators.required],  
       serial_number: ['', Validators.required],
       sub_branch: ['', Validators.required],
+      OS: ['', Validators.required],
+      RAM: ['', Validators.required],
+      Storage: ['', Validators.required],
+      work_order: ['', Validators.required],
+      challan_no: ['', Validators.required],
     });
 
     this.uploadForm = this.fb.group({

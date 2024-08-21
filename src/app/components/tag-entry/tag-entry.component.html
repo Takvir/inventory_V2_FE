@@ -59,6 +59,11 @@
           <th>Purchase Date</th>
           <th>Status</th>
           <th>Asset Value</th>
+          <th>Operating System</th>
+          <th>RAM</th>
+          <th>Storage</th>
+          <th>Work Order</th>
+          <th>Challan No.</th>
           <!-- <th>Asset Get By</th> -->
 
 
@@ -82,11 +87,16 @@
           <td>{{ asset.purchase_date | date }}</td>
           <td>{{ asset.status }}</td>
           <td>{{ calculateAssetValue(asset.purchase_date, asset.price) }}</td>
+          <td>{{ asset.OS }} </td>
+          <td>{{ asset.RAM }} </td>
+          <td>{{ asset.Storage }} </td>
+          <td>{{ asset.work_order }}</td>
+          <td>{{ asset.challan_no }}</td>
           <!-- <td>{{ asset.asset_get_by }}</td> -->
 
 
           <td>
-            <button (click)="editAsset(asset.asset_id)" class="bg-green-800 py-0 px-2 rounded-md text-white">TAG Entry</button>
+            <button (click)="editAsset(asset.asset_id)" class="bg-green-800 py-0 px-2 rounded-md text-white">TAG</button>
           </td>
         </tr>
       </tbody>

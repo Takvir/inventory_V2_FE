@@ -1,7 +1,7 @@
 /* Styling for the container */
 .asset-container {
-  padding: 10px;
-  max-width: 1300px; /* Adjust the width of the form container */
+  padding: 20px;
+  max-width: 100%; /* Adjusted width for a more compact form */
   margin: 0 auto; /* Center the form container horizontally */
   border: 1px solid #ddd; /* Light border around the container */
   border-radius: 8px; /* Rounded corners */
@@ -12,8 +12,8 @@
 /* Form heading */
 .form-heading {
   text-align: center;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 28px; /* Increased font size for better visibility */
+  font-weight: 700; /* Bold font */
   margin-bottom: 20px;
   color: #333;
 }
@@ -21,16 +21,16 @@
 /* Flexbox for form rows */
 .form-row {
   display: flex;
-  flex-wrap: wrap; /* Allow rows to wrap */
-  justify-content: space-between; /* Space between columns */
-  margin-bottom: 10px; /* Space between rows */
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 15px; /* Increased space between rows */
 }
 
 /* Form group styling */
 .form-group {
   flex: 1; /* Each form group takes equal space */
   min-width: 200px; /* Minimum width to prevent too small fields */
-  margin-right: 10px; /* Space between form groups */
+  margin-right: 15px; /* Space between form groups */
 }
 
 .form-group:last-child {
@@ -40,97 +40,62 @@
 /* Label styling */
 label {
   display: block;
-  font-weight: 500;
+  font-weight: 600; /* Slightly bold font */
   margin-bottom: 8px;
 }
 
 /* Form control styling */
 .form-control {
-  width: 100%; /* Full width */
-  padding: 5px; /* Reduced padding */
+  width: 100%;
+  padding: 8px; /* Increased padding for better user experience */
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box; /* Include padding in width */
-  height: 32px; /* Decreased height */
+  box-sizing: border-box;
+  height: 36px; /* Increased height for better usability */
 }
 
 /* Select styling */
 select.form-control {
-  height: 31.5px; /* Consistent height */
+  height: 36px; /* Consistent height */
 }
 
 /* Dropdown options styling */
 select.form-control option {
-  padding: 6px; /* Padding inside options */
-  background-color: #e3e1e1; /* White background */
+  padding: 6px;
+  background-color: #fff; /* White background */
   color: #333;
-  font-size: larger;
+  font-size: 16px;
   font-weight: 500;
-  border-bottom: 2px solid;
-
 }
 
 select.form-control option:hover {
-  background-color: #f1f1f1; /* Light gray on hover */
+  background-color: #f0f0f0; /* Light gray on hover */
 }
 
 /* Button styling */
-/* .submit-button {
+.btn-primary {
   display: block;
-  width: 200px; 
-  padding: 8px; 
-  background-color: #003d03;
-  color: #fff; 
+  width: 200px;
+  padding: 10px;
+  background-color: #23412d;
+  color: #fff;
   border: none;
   border-radius: 4px;
-  font-size: 18px; 
+  font-size: 16px;
   cursor: pointer;
-  margin: 15px auto; 
-  font-weight: 500;
-  text-align: center;
-} */
-
-/* .submit-button:hover {
-  background-color: #45a049; 
-} */
-
-.submit-button {
-  display: block;
-  width: 200px; 
-  padding: 8px; 
-  background-color: #003d03;
-  color: #fff; 
-  border: none;
-  border-radius: 4px;
-  font-size: 18px; 
-  cursor: pointer;
-  margin: 15px auto; 
-  font-weight: 500;
+  margin: 20px auto; /* Centered button with margin */
+  font-weight: 400;
   text-align: center;
 }
 
-
-
-.disabled-button {
-  background-color: gray;
-  cursor: not-allowed;
-}
-
-
-.branch-heading {
-  text-align: center; /* Center the text */
-  font-size: 24px; /* Font size */
-  font-weight: bold; /* Make the font bold */
-  margin: 10px 0; /* Space above and below the heading */
-  border-bottom: 2px solid #c2c2c2; /* Underline color and thickness */
-  padding-bottom: 10px; /* Space between text and underline */
+.btn-primary:hover {
+  background-color: #007c5d; /* Darker blue on hover */
 }
 
 /* Media queries for responsiveness */
 @media (max-width: 1200px) {
   .asset-container {
-    padding: 10px;
-    max-width: 100%;
+    max-width: 90%;
   }
 }
 
@@ -141,7 +106,7 @@ select.form-control option:hover {
 
   .form-group {
     margin-right: 0; /* Remove margin between stacked form groups */
-    margin-bottom: 10px; /* Add space between stacked form groups */
+    margin-bottom: 15px; /* Add space between stacked form groups */
   }
 
   .form-group:last-child {
@@ -152,16 +117,16 @@ select.form-control option:hover {
 @media (max-width: 480px) {
   .form-control {
     padding: 6px;
-    height: 28px; /* Further reduced height */
+    height: 32px; /* Slightly reduced height */
   }
 
-  .submit-button {
-    font-size: 16px; /* Further reduced font size */
-    padding: 6px; /* Further reduced padding */
-    width: 100px; /* Further reduced width */
+  .btn-primary {
+    font-size: 14px; /* Smaller font size */
+    padding: 8px; /* Reduced padding */
+    width: 150px; /* Adjusted width */
   }
 
-  .branch-heading {
-    font-size: 20px;
+  .form-heading {
+    font-size: 22px; /* Slightly smaller font size */
   }
 }

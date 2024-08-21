@@ -20,6 +20,12 @@ export interface Asset {
   asset_get_by: string;
   serial_number: string;
   sub_branch: string;
+  OS: string;
+  RAM: string;
+  Storage: string;
+  work_order: string;
+  challan_no: string;
+
 }
 
 export interface Branch {
@@ -89,6 +95,11 @@ export class TagEntryComponent implements OnInit {
       sub_branch: ['', Validators.required],
       group_name: ['', Validators.required],
       branch_name: ['', Validators.required],
+      OS: ['', Validators.required],
+      RAM: ['', Validators.required],
+      Storage: ['', Validators.required],
+      work_order: ['', Validators.required],
+      challan_no: ['', Validators.required],
     });
 
 

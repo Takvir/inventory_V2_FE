@@ -1,9 +1,9 @@
 /* Styling for the container */
 .asset-container {
-  padding: 20px;
+  padding: 1px;
   max-width: 100%; /* Adjusted width for a more compact form */
   margin: 0 auto; /* Center the form container horizontally */
-  border: 1px solid #ddd; /* Light border around the container */
+  border: 1px solid #e4e7e4; /* Light border around the container */
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   background-color: #fff; /* White background for the container */
@@ -12,9 +12,9 @@
 /* Form heading */
 .form-heading {
   text-align: center;
-  font-size: 28px; /* Increased font size for better visibility */
-  font-weight: 700; /* Bold font */
-  margin-bottom: 20px;
+  font-size: 20px; /* Increased font size for better visibility */
+  font-weight: 500; /* Bold font */
+  margin-bottom: 10px;
   color: #333;
 }
 
@@ -23,7 +23,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 15px; /* Increased space between rows */
+  margin-bottom: 10px; /* Increased space between rows */
 }
 
 /* Form group styling */
@@ -47,21 +47,21 @@ label {
 /* Form control styling */
 .form-control {
   width: 100%;
-  padding: 8px; /* Increased padding for better user experience */
-  border: 1px solid #ccc;
+  padding: 1px; /* Increased padding for better user experience */
+  border: 1px dotted #0a5500;
   border-radius: 4px;
   box-sizing: border-box;
-  height: 36px; /* Increased height for better usability */
+  height: 30px; /* Increased height for better usability */
 }
 
 /* Select styling */
 select.form-control {
-  height: 36px; /* Consistent height */
+  height: 30px; /* Consistent height */
 }
 
 /* Dropdown options styling */
 select.form-control option {
-  padding: 6px;
+  padding: 2px;
   background-color: #fff; /* White background */
   color: #333;
   font-size: 16px;
@@ -76,7 +76,7 @@ select.form-control option:hover {
 .btn-primary {
   display: block;
   width: 200px;
-  padding: 10px;
+  padding: 8px;
   background-color: #23412d;
   color: #fff;
   border: none;

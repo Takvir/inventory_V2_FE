@@ -51,6 +51,22 @@ export class EquipmentComponent implements OnInit {
   branches: Branch[] = [];
   groups: Group2[] = [];
   subBranchOptions: string[] = [];
+  isCpuGroup: boolean = false;
+  isLaptopGroup: boolean = false;
+  isMonitorGroup: boolean = false;
+  isScannerrGroup: boolean = false;
+  isPrinterBrtaGroup: boolean = false;
+  isPrinterBranchGroup: boolean = false;
+  isIpPhoneSetGroup: boolean = false;
+  isOfflineUpsGroup: boolean = false;
+
+
+
+  deviceOptions: string[] = [];
+  configOptions: string[] = [];
+  osOptions: string[] = [];
+  ramOptions: string[] = [];
+  storageOptions: string[] = [];
 
   constructor(
     private assetService: SectionService,
@@ -202,6 +218,154 @@ export class EquipmentComponent implements OnInit {
       });
     }
   }
+
+
+  onGroupChange(event: any): void {
+    const selectedGroupId = +event.target.value;
+    
+    const selectedGroup = this.groups.find(group => +group.group_id === selectedGroupId);
+    
+    if (selectedGroup && selectedGroup.group_name === 'CPU') {
+      this.isCpuGroup = true;
+      this.isLaptopGroup = false;
+      this.deviceOptions = ['Dell', 'HP', 'Lenovo'];
+      this.configOptions = ['Core i3', 'Core i5', 'Core i7'];
+      this.osOptions = ['Windows 7', 'Windows 10' , 'Windows 11' , 'Windows Server'];
+      this.ramOptions = ['4 GB' , '8 GB' , '16 GB'];
+      this.storageOptions = ['1 TB' , '500 GB' , '256 GB']
+      
+    }
+    else if (selectedGroup && selectedGroup.group_name === 'Laptop') {
+      this.isLaptopGroup = true;
+      this.isCpuGroup = false;
+      this.isOfflineUpsGroup = false;
+      this.isIpPhoneSetGroup = false;
+      this.isPrinterBranchGroup = false;
+      this.isPrinterBrtaGroup = false;
+      this.isScannerrGroup = false;
+      this.isMonitorGroup = false;
+      this.deviceOptions = ['Dell', 'HP', 'Lenovo','Accer'];
+      this.configOptions = ['Core i3', 'Core i5', 'Core i7'];
+      this.osOptions = ['Windows 10', 'Windows 11'];
+      this.ramOptions = ['4 GB' , '8 GB' , '16 GB'];
+      this.storageOptions = ['1 TB' , '500 GB' , '256 GB'];
+    }
+    else if (selectedGroup && selectedGroup.group_name === 'Monitor') {
+      this.isMonitorGroup = true
+      this.isLaptopGroup = false;
+      this.isCpuGroup = false;
+      this.isOfflineUpsGroup = false;
+      this.isIpPhoneSetGroup = false;
+      this.isPrinterBranchGroup = false;
+      this.isPrinterBrtaGroup = false;
+      this.isScannerrGroup = false;
+      this.deviceOptions = ['Dell', 'HP'];
+      this.configOptions = ['19.5 inch', '21 inch'];
+      this.osOptions = ['N/A'];
+      this.ramOptions = ['N/A'];
+      this.storageOptions = ['N/A'];
+    }
+    else if (selectedGroup && selectedGroup.group_name === 'Scanner (e-doc)') {
+      this.isScannerrGroup = true;
+      this.isMonitorGroup = false;
+      this.isLaptopGroup = false;
+      this.isCpuGroup = false;
+      this.isOfflineUpsGroup = false;
+      this.isIpPhoneSetGroup = false;
+      this.isPrinterBranchGroup = false;
+      this.isPrinterBrtaGroup = false;
+      this.deviceOptions = ['Avision', 'Cannon'];
+      this.configOptions = ['AV332U'];
+      this.osOptions = ['N/A'];
+      this.ramOptions = ['N/A'];
+      this.storageOptions = ['N/A'];
+    }
+    else if (selectedGroup && selectedGroup.group_name === 'Printer (BRTA)') {
+      this.isPrinterBrtaGroup = true;
+      this.isScannerrGroup = false;
+      this.isMonitorGroup = false;
+      this.isLaptopGroup = false;
+      this.isCpuGroup = false;
+      this.isOfflineUpsGroup = false;
+      this.isIpPhoneSetGroup = false;
+      this.isPrinterBranchGroup = false;
+      this.deviceOptions = ['Epson', 'Cannon'];
+      this.configOptions = ['LQ310'];
+      this.osOptions = ['N/A'];
+      this.ramOptions = ['N/A'];
+      this.storageOptions = ['N/A'];
+    }
+    else if (selectedGroup && selectedGroup.group_name === 'Printer (Branch)') {
+      this.isPrinterBranchGroup = true;
+      this.isPrinterBrtaGroup = false;
+      this.isScannerrGroup = false;
+      this.isMonitorGroup = false;
+      this.isLaptopGroup = false;
+      this.isCpuGroup = false;
+      this.deviceOptions = ['RICOH', 'HP'];
+      this.configOptions = ['M-2700','LaserJetPro-400','LaserJetPro-M402DN'];
+      this.osOptions = ['N/A'];
+      this.ramOptions = ['N/A'];
+      this.storageOptions = ['N/A'];
+    }
+    else if (selectedGroup && selectedGroup.group_name === 'Ip Phone (Set)') {
+      this.isIpPhoneSetGroup = true
+      this.isPrinterBranchGroup = false;
+      this.isPrinterBrtaGroup = false;
+      this.isScannerrGroup = false;
+      this.isMonitorGroup = false;
+      this.isLaptopGroup = false;
+      this.isCpuGroup = false;
+      this.isOfflineUpsGroup = false;
+     
+      this.deviceOptions = ['AVAYA', 'Panasonic'];
+      this.configOptions = ['J139','1603 L','POTS'];
+      this.osOptions = ['N/A'];
+      this.ramOptions = ['N/A'];
+      this.storageOptions = ['N/A'];
+    }
+    else if (selectedGroup && selectedGroup.group_name === 'Offline UPS') {
+      this.isOfflineUpsGroup = true;
+      this.isIpPhoneSetGroup = false;
+      this.isPrinterBranchGroup = false;
+      this.isPrinterBrtaGroup = false;
+      this.isScannerrGroup = false;
+      this.isMonitorGroup = false;
+      this.isLaptopGroup = false;
+      this.isCpuGroup = false;
+      this.isIpPhoneSetGroup = false;
+      this.deviceOptions = ['Apollo', 'Power Guard', 'Prolink'];
+      this.configOptions = ['650 VA'];
+      this.osOptions = ['N/A'];
+      this.ramOptions = ['N/A'];
+      this.storageOptions = ['N/A'];
+    }
+    else {
+      this.isOfflineUpsGroup = false;
+      this.isIpPhoneSetGroup = false;
+      this.isPrinterBranchGroup = false;
+      this.isPrinterBrtaGroup = false;
+      this.isScannerrGroup = false;
+      this.isMonitorGroup = false;
+      this.isLaptopGroup = false;
+      this.isCpuGroup = false;
+      this.isIpPhoneSetGroup = false;
+      this.assetForm.patchValue({
+        desktop_name: '',
+        configuration: '',
+        OS: 'N/A',
+        RAM: 'N/A',
+        Storage: 'N/A',
+      });
+    }
+
+
+
+    
+  }
+
+  
+  
 
   loadBranches(): void {
     this.branchService.getBranches().subscribe((data: Branch[]) => {

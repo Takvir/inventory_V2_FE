@@ -26,21 +26,29 @@
     <div class="form-row">
       <div class="form-group">
         <label for="group_id">Asset Group:</label>
-        <select formControlName="group_id" id="group_id" class="form-control" required>
+        <select formControlName="group_id" id="group_id" class="form-control" required (change)="onGroupChange($event)">
           <option *ngFor="let group of groups" [value]="group.group_id">{{ group.group_name }}</option>
         </select>
       </div>
 
-      <div class="form-group">
-        <label for="desktop_name">Device Name:</label>
-        <input id="desktop_name" formControlName="desktop_name" class="form-control">
-      </div>
 
       <div class="form-group">
+        <label for="desktop_name">Device Name:</label>
+        <select id="desktop_name" formControlName="desktop_name" class="form-control" *ngIf="isCpuGroup || isLaptopGroup || isMonitorGroup || isScannerrGroup || isPrinterBrtaGroup || isPrinterBranchGroup || isIpPhoneSetGroup || isOfflineUpsGroup ">
+          <option *ngFor="let device of deviceOptions" [value]="device">{{ device }}</option>
+        </select>
+        <input *ngIf="!isCpuGroup && !isLaptopGroup && !isMonitorGroup && !isScannerrGroup && !isPrinterBrtaGroup && !isPrinterBranchGroup && !isIpPhoneSetGroup && !isOfflineUpsGroup" id="desktop_name" formControlName="desktop_name" class="form-control">
+      </div>
+      
+      <div class="form-group">
         <label for="configuration">Model Name / Configuration:</label>
-        <input id="configuration" formControlName="configuration" class="form-control">
+        <select id="configuration" formControlName="configuration" class="form-control" *ngIf="isCpuGroup || isLaptopGroup || isMonitorGroup || isScannerrGroup || isPrinterBrtaGroup || isPrinterBranchGroup || isIpPhoneSetGroup || isOfflineUpsGroup ">
+          <option *ngFor="let config of configOptions" [value]="config">{{ config }}</option>
+        </select>
+        <input *ngIf="!isCpuGroup && !isLaptopGroup && !isMonitorGroup && !isScannerrGroup && !isPrinterBrtaGroup && !isPrinterBranchGroup && !isIpPhoneSetGroup && !isOfflineUpsGroup" id="configuration" formControlName="configuration" class="form-control">
       </div>
     </div>
+
 
     <div class="form-row">
       <div class="form-group">
@@ -55,19 +63,28 @@
 
       <div class="form-group">
         <label for="OS">Operating System:</label>
-        <input id="OS" formControlName="OS" class="form-control">
+        <select id="OS" formControlName="OS" class="form-control" *ngIf="isCpuGroup || isLaptopGroup || isMonitorGroup || isScannerrGroup || isPrinterBrtaGroup || isPrinterBranchGroup || isIpPhoneSetGroup || isOfflineUpsGroup ">
+          <option *ngFor="let config of osOptions" [value]="config">{{ config }}</option>
+        </select>
+        <input *ngIf="!isCpuGroup && !isLaptopGroup && !isMonitorGroup && !isScannerrGroup && !isPrinterBrtaGroup && !isPrinterBranchGroup && !isIpPhoneSetGroup && !isOfflineUpsGroup" id="OS" formControlName="OS" class="form-control">
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
         <label for="RAM">RAM:</label>
-        <input id="RAM" formControlName="RAM" class="form-control">
+        <select id="RAM" formControlName="RAM" class="form-control" *ngIf="isCpuGroup || isLaptopGroup || isMonitorGroup || isScannerrGroup || isPrinterBrtaGroup || isPrinterBranchGroup || isIpPhoneSetGroup || isOfflineUpsGroup ">
+          <option *ngFor="let config of ramOptions" [value]="config">{{ config }}</option>
+        </select>
+        <input *ngIf="!isCpuGroup && !isLaptopGroup && !isMonitorGroup && !isScannerrGroup && !isPrinterBrtaGroup && !isPrinterBranchGroup && !isIpPhoneSetGroup && !isOfflineUpsGroup" id="RAM" formControlName="RAM" class="form-control">
       </div>
 
       <div class="form-group">
         <label for="Storage">Storage:</label>
-        <input id="Storage" formControlName="Storage" class="form-control">
+        <select id="Storage" formControlName="Storage" class="form-control" *ngIf="isCpuGroup || isLaptopGroup || isMonitorGroup || isScannerrGroup || isPrinterBrtaGroup || isPrinterBranchGroup || isIpPhoneSetGroup || isOfflineUpsGroup ">
+          <option *ngFor="let config of storageOptions" [value]="config">{{ config }}</option>
+        </select>
+        <input *ngIf="!isCpuGroup && !isLaptopGroup && !isMonitorGroup && !isScannerrGroup && !isPrinterBrtaGroup && !isPrinterBranchGroup && !isIpPhoneSetGroup && !isOfflineUpsGroup" id="Storage" formControlName="Storage" class="form-control">
       </div>
 
       <div class="form-group">

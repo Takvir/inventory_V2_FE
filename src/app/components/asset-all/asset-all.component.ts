@@ -18,6 +18,13 @@ interface Asset {
   serial_number: string;
   group_name: string;
   sub_branch: string;
+  OS?: string;
+  RAM?: string;
+  Storage?: string;
+  work_order?: string;
+  challan_no?: string;
+  
+ 
 }
 
 @Component({

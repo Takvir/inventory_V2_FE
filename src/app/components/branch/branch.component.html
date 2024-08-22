@@ -3,18 +3,16 @@
     <h1 class="text-xl font-bold mb-2 inline-block border-b-2 border-gray-300">Branch List</h1>
   </div>
   <button
-
-    color=""
     (click)="openAddBranchDialog()"
     class="bg-green-900 text-white px-10 py-3 rounded-md shadow-md hover:bg-green-600 text-base mb-4"
   >
     Add Branch
   </button>
 
-  <!-- Modal Template for Adding Branch -->
+  <!-- Modal Template for Adding or Updating Branch -->
   <ng-template #addBranchDialog>
     <div class="p-4 bg-white rounded-lg shadow-lg">
-      <h2 class="text-lg font-semibold mb-4">Add Branch</h2>
+      <h2 class="text-lg font-semibold mb-4">{{ editingBranchId ? 'Edit Branch' : 'Add Branch' }}</h2>
       <mat-dialog-content>
         <form [formGroup]="branchForm" (ngSubmit)="submitBranchForm()">
           <div class="mb-4">
@@ -29,6 +27,12 @@
               <input matInput type="number" formControlName="branch_id" required class="border-gray-300 rounded-md">
             </mat-form-field>
           </div>
+          <div class="mb-4">
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label>Employee Number</mat-label>
+              <input matInput type="number" formControlName="employee_number" required class="border-gray-300 rounded-md">
+            </mat-form-field>
+          </div>
           <div class="flex justify-end space-x-4">
             <button
               mat-button
@@ -39,11 +43,11 @@
             </button>
             <button
               mat-raised-button
-              color="primary"
+              [color]="editingBranchId ? 'primary' : 'primary'"
               type="submit"
               class="bg-blue-500 text-white px-3 py-1.5 rounded-md shadow-md hover:bg-blue-600"
             >
-              Add Branch
+              {{ editingBranchId ? 'Update Branch' : 'Add Branch' }}
             </button>
           </div>
         </form>
@@ -53,22 +57,35 @@
 
   <h3 class="text-md font-medium mb-4">Total Branches: {{ totalBranches }}</h3>
 
-  <div class="table-container overflow-x-auto">
-    <table class="min-w-full bg-white border border-gray-200 rounded-md shadow-md">
-      <thead>
-        <tr class="bg-green-800 border-b text-black">
-          <th class="py-1 px-2 text-left text-sm font-medium">S. No.</th>
-          <th class="py-1 px-2 text-left text-sm font-medium">Name</th>
-          <th class="py-1 px-2 text-left text-sm font-medium">Branch ID</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let branch of branches; let i = index" class="border-b">
-          <td class="py-1 px-2 text-sm">{{ i + 1 }}</td>
-          <td class="py-1 px-2 text-sm">{{ branch.branch_name }}</td>
-          <td class="py-1 px-2 text-sm">{{ branch.branch_id }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="container mx-auto px-4 py-4">
+    <div class="table-container overflow-x-auto">
+      <table class="min-w-full bg-white border border-gray-200 rounded-md shadow-md">
+        <thead>
+          <tr class="bg-green-800 border-b text-black">
+            <th class="py-1 px-2 text-left text-sm font-medium">S. No.</th>
+            <th class="py-1 px-2 text-left text-sm font-medium">Name</th>
+            <th class="py-1 px-2 text-left text-sm font-medium">Branch ID</th>
+            <th class="py-1 px-2 text-left text-sm font-medium">Employee Number</th>
+            <th class="py-1 px-2 text-left text-sm font-medium">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let branch of branches; let i = index" class="border-b">
+            <td class="py-1 px-2 text-sm">{{ i + 1 }}</td>
+            <td class="py-1 px-2 text-sm">{{ branch.branch_name }}</td>
+            <td class="py-1 px-2 text-sm">{{ branch.branch_id }}</td>
+            <td class="py-1 px-2 text-sm">{{ branch.employee_number }}</td>
+            <td class="py-1 px-2 text-sm">
+              <button
+                (click)="openEditBranchDialog(branch)"
+                class="bg-green-500 text-white px-2 rounded-md shadow-md hover:bg-yellow-600"
+              >
+                Edit
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

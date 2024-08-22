@@ -16,34 +16,44 @@
   </div>
 
   <!-- Table -->
-  <table>
-    <thead>
+  <table class="min-w-full divide-y divide-gray-200">
+    <thead class="bg-gray-50">
       <tr>
-        <th>Branch Name</th>
-        <th *ngFor="let group of groups" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">{{ group.group_name }}</th>
-        <th>Total</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Branch Name</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employee No.</th>
+        <!-- Dynamically create columns for each group name -->
+        <th *ngFor="let group of groups" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          {{ group.group_name }}
+        </th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="bg-white divide-y divide-gray-200">
       <tr *ngFor="let branch of filteredBranches">
-        <td style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">{{ branch.branch_name }}</td>
-        <td *ngFor="let group of groups">
-          {{ assetCounts[branch.branch_name][group.group_name] || 0 }}
+        <td class="px-6 py-4 whitespace-nowrap">{{ branch.branch_name }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ branch.employee_number }}</td>
+        <!-- Dynamically create cells for each group name -->
+        <td *ngFor="let group of groups" class="px-6 py-4 whitespace-nowrap">
+          {{ assetCounts[branch.branch_name]?.[group.group_name] || 0 }}
         </td>
-        <td>{{ rowTotals[branch.branch_name] || 0 }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ rowTotals[branch.branch_name] || 0 }}</td>
       </tr>
     </tbody>
-    <tfoot>
+    <tfoot class="bg-gray-50">
       <tr>
-        <td><strong>Total</strong></td>
-        <td *ngFor="let group of groups">
+        <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><strong>Total</strong></td>
+        <td class="px-6 py-3"></td>
+        <!-- Dynamically create total cells for each group name -->
+        <td *ngFor="let group of groups" class="px-6 py-3">
           {{ columnTotals[group.group_name] || 0 }}
         </td>
-        <td><strong>{{ grandTotal }}</strong></td>
+        <td class="px-6 py-3"><strong>{{ grandTotal }}</strong></td>
       </tr>
     </tfoot>
   </table>
-  <div class="download-container">
-    <button (click)="downloadTableData()" class="download-button">Download</button>
+
+  <!-- Download Button -->
+  <div class="text-center mt-4">
+    <button (click)="downloadTableData()" class="bg-blue-500 text-white px-4 py-2 rounded">Download</button>
   </div>
 </div>

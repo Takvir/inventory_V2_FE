@@ -1,38 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import { SectionService } from 'src/app/services/section/section.service';
+import { TagAssetService } from 'src/app/services/tag-asset/tag-asset.service';
 import { BranchService } from 'src/app/services/branch/branch.service';
 import { GroupService } from 'src/app/services/group/group.service';
 
 interface Asset {
-  id: number;
+  asset_id: number;
   branch_id: number;
   branch_name: string;
   group_id: number;
+  group_name: string;
   desktop_name: string;
   configuration: string;
   tag_name: string;
   warranty: string;
   price: number;
-  purchase_date: string;
+  purchase_date: Date;
   status: string;
   asset_get_by: string;
   serial_number: string;
+  sub_branch: string;
+  OS: string;
+  RAM: string;
+  Storage: string;
+  work_order: string;
+  challan_no: string;
+  
 }
 
 export interface Branch {
   branch_id: number;
   branch_name: string;
+  employee_number: number; // Add this field
 }
 
-export interface Group {
+export interface Group2 {
   group_id: number;
   group_name: string;
-  branch_id: number;
+  stock_in_hand: number;
+  user_group: string;
 }
 
 interface AssetCount {
   [branchName: string]: {
     [groupName: string]: number;
+    employee_count: number; // Add this field
   };
 }
 
@@ -44,7 +55,7 @@ interface AssetCount {
 export class AllReportComponent implements OnInit {
   assets: Asset[] = [];
   branches: Branch[] = [];
-  groups: Group[] = [];
+  groups: Group2[] = [];
   assetCounts: AssetCount = {};
   rowTotals: { [branchName: string]: number } = {};
   columnTotals: { [groupName: string]: number } = {};
@@ -53,7 +64,7 @@ export class AllReportComponent implements OnInit {
   filteredBranches: Branch[] = [];
 
   constructor(
-    private assetService: SectionService,
+    private assetService: TagAssetService,
     private branchService: BranchService,
     private groupService: GroupService
   ) { }
@@ -72,7 +83,7 @@ export class AllReportComponent implements OnInit {
   }
 
   loadGroups(): void {
-    this.groupService.getGroups().subscribe((data: Group[]) => {
+    this.groupService.getGroups2().subscribe((data: Group2[]) => {
       this.groups = data;
     });
   }
@@ -85,37 +96,53 @@ export class AllReportComponent implements OnInit {
   }
 
   calculateAssetCounts(): void {
+    console.log('Starting asset count calculation');
+    
     this.assetCounts = {};
     this.rowTotals = {};
     this.columnTotals = {};
     this.grandTotal = 0;
-
-    // Initialize asset counts for branches and groups
+  
+    // Initialize assetCounts with employee numbers and empty counts for each group
     this.branches.forEach(branch => {
-      this.assetCounts[branch.branch_name] = {};
-      this.rowTotals[branch.branch_name] = 0;
-
-      this.groups.filter(group => group.branch_id === branch.branch_id).forEach(group => {
-        this.assetCounts[branch.branch_name][group.group_name] = 0;
-        this.columnTotals[group.group_name] = 0;
-      });
+      this.assetCounts[branch.branch_name] = {
+        employee_count: branch.employee_number,
+        ...this.groups.reduce((acc, group) => {
+          acc[group.group_name] = 0; // Initialize count to 0 for each group
+          return acc;
+        }, {} as { [key: string]: number })
+      };
     });
-
-    // Count assets
+  
+    console.log('Initialized assetCounts:', this.assetCounts);
+  
+    // Calculate the asset counts
     this.assets.forEach(asset => {
-      const branchName = asset.branch_name;
-      const groupName = this.groups.find(group => group.group_id === asset.group_id)?.group_name;
-
-      if (groupName) {
-        this.assetCounts[branchName][groupName] = (this.assetCounts[branchName][groupName] || 0) + 1;
-        this.rowTotals[branchName] = (this.rowTotals[branchName] || 0) + 1;
+      const branchName = this.branches.find(branch => branch.branch_id === asset.branch_id)?.branch_name;
+      const groupName = this.groups.find(group => group.group_id.toString() === asset.group_id.toString())?.group_name;
+  
+      console.log(`Processing asset ${asset.asset_id}: Branch Name = ${branchName}, Group Name = ${groupName}`);
+  
+      if (branchName && groupName) {
+        if (this.assetCounts[branchName]) {
+          this.assetCounts[branchName][groupName] = (this.assetCounts[branchName][groupName] || 0) + 1;
+          this.rowTotals[branchName] = (this.rowTotals[branchName] || 0) + 1;
+        }
+  
         this.columnTotals[groupName] = (this.columnTotals[groupName] || 0) + 1;
         this.grandTotal++;
       }
     });
-
-    this.filterData(); // Apply search filter initially
+  
+    console.log('Final assetCounts:', this.assetCounts);
+    console.log('Final rowTotals:', this.rowTotals);
+    console.log('Final columnTotals:', this.columnTotals);
+    console.log('Grand Total:', this.grandTotal);
   }
+  
+  
+  
+  
 
   filterData(): void {
     this.filteredBranches = this.branches.filter(branch =>
@@ -136,11 +163,12 @@ export class AllReportComponent implements OnInit {
 
   convertToCSV(): string {
     // Create CSV header
-    const header = ['Branch Name', ...this.groups.map(group => group.group_name), 'Total'].join(',') + '\n';
+    const header = ['Branch Name', 'Employee Number', ...this.groups.map(group => group.group_name), 'Total'].join(',') + '\n';
 
     // Create CSV rows
     const rows = this.filteredBranches.map(branch => [
       branch.branch_name,
+      branch.employee_number,
       ...this.groups.map(group => this.assetCounts[branch.branch_name][group.group_name] || 0),
       this.rowTotals[branch.branch_name] || 0
     ].join(',')).join('\n');
@@ -148,6 +176,7 @@ export class AllReportComponent implements OnInit {
     // Add totals row
     const totalsRow = [
       'Total',
+      '',
       ...this.groups.map(group => this.columnTotals[group.group_name] || 0),
       this.grandTotal
     ].join(',');

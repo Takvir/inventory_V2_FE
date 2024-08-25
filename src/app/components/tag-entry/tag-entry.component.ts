@@ -51,6 +51,7 @@ export interface Group2 {
   styleUrls: ['./tag-entry.component.css']
 })
 export class TagEntryComponent implements OnInit {
+[x: string]: any;
   assets: Asset[] = [];
   viewAssetsForm!: FormGroup;  // For viewing assets
   editAssetForm!: FormGroup;   // For editing asset
@@ -283,6 +284,16 @@ export class TagEntryComponent implements OnInit {
   isFAD(tagName: string): boolean {
     return tagName === 'Routed To FAD';
   }
+
+  isValueNaN(value: any): boolean {
+    return isNaN(value);
+  }
+  isValidDate(date: any): boolean {
+    return date instanceof Date && !isNaN(date.getTime());
+  }
+
+  
+
 
   calculateAssetValue(purchaseDate: Date, price: number): number {
     const currentDate = new Date();

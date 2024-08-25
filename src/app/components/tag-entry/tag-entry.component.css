@@ -10,6 +10,8 @@
   margin-top: 20px;
 }
 
+
+
 .asset-form {
   display: flex;
   flex-direction: column;
@@ -26,6 +28,7 @@
 .form-group {
   flex: 1;
   min-width: 200px;
+  max-height: 100px;
 }
 
 .form-group label {
@@ -35,19 +38,22 @@
   color: #333;
 }
 
+.form-control {
+  width: 100%; /* Adjusted width to full container */
+  padding: 3px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;/* Increased height for better usability */
+
+
+}
+
 .form-group-inline {
   flex: 1 1 0;
 }
 
-.form-control {
-  width: 100%; /* Adjusted width to full container */
-  padding: 7px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-}
 .submit-button {
-  padding: 8px 12px; /* Adjusted padding for smaller height */
+  padding: 4px 12px; /* Adjusted padding for smaller height */
   border: none;
   border-radius: 4px;
   background-color: #02724b;
@@ -75,21 +81,24 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+
+  
 }
 
 /* Table headers and cells */
 .asset-table th, .asset-table td {
-  border: 1px solid #ddd;
+  border: 1px dotted #1a0f0f;
   padding: 6px; /* Adjusted padding */
   text-align: left;
-  font-size: 12px; /* Smaller text size */
+  font-size: 11px; /* Smaller text size */
+  
 }
 
 /* Table header styling */
 .asset-table th {
-  background-color: #f4f4f4;
+  background-color: #f1eca4;
   color: #333;
-  font-size: 14px; /* Smaller header text size */
+  font-size: 12px; /* Smaller header text size */
   font-weight: bold;
 }
 

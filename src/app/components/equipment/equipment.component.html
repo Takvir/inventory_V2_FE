@@ -2,7 +2,8 @@
  
   <form [formGroup]="assetForm" (ngSubmit)="onSubmit()" class="asset-form">
     <div class="form-section bg-gray-100 p-3">
-      <h2 class="text-center">New Asset Entry</h2>
+      <!-- <h2 class="text-center">New Asset Entry</h2> -->
+      <h2 class="section-heading text-center text-blue-700 inline-block border-b-2 border-gray-300">New Asset (Branch Entry)</h2>
       <div class="form-row">
         <div class="form-group">
           <label for="branch_id">Branch:</label>
@@ -93,8 +94,13 @@
         </div>
   
         <div class="form-group">
-          <label for="asset_get_by">Asset Get By:</label>
-          <input id="asset_get_by" formControlName="asset_get_by" class="form-control">
+          <label for="asset_get_by">Purchase From:</label>
+          
+          <select id="asset_get_by" formControlName="asset_get_by" class="form-control">
+            <option value="Smart Technologies">Smart Technologies</option>
+            <option value="Star Tech">Star Tech</option>
+            <option value="Rayans">Rayans</option>
+          </select>
         </div>
   
      
@@ -108,7 +114,7 @@
 
 
     <div class="form-section bg-slate-200 p-3">
-      <h2 class="section-heading">FAD Department</h2>
+      <h2 class="section-heading text-red-700 inline-block border-b-2 border-gray-300">Finance Administration Division (FAD)</h2>
       <div class="form-row">
         <div class="form-group">
           <label for="tag_name">Tag Name:</label>
@@ -124,32 +130,43 @@
 
 
     <div class="form-section bg-slate-100 p-3">
-      <h2 class="section-heading">CSD Department</h2>
+      <h2 class="section-heading text-green-700 inline-block border-b-2 border-gray-300">Common Service Division (CSD) </h2>
       <div class="form-row">
 
         <div class="form-group">
           <label for="price">Price:</label>
-          <input id="price" formControlName="price" class="form-control" type="number">
+          <select id="price" formControlName="price" class="form-control">
+            <option value="Routed To CSD">Routed To CSD</option>
+          </select>
         </div>
 
         <div class="form-group">
           <label for="warranty">Warranty (End of Support):</label>
-          <input id="warranty" formControlName="warranty" class="form-control" type="date">
+          <select id="warranty" formControlName="warranty" class="form-control">
+            <option value="Routed To CSD">Routed To CSD</option>
+          </select>
         </div>
 
         <div class="form-group">
           <label for="purchase_date">Purchase Date:</label>
-          <input id="purchase_date" formControlName="purchase_date" class="form-control" type="date">
+           <select id="purchase_date" formControlName="purchase_date" class="form-control">
+            <option value="Routed To CSD">Routed To CSD</option>
+          </select>
         </div>
 
         <div class="form-group">
           <label for="work_order">Work Order:</label>
-          <input id="work_order" formControlName="work_order" class="form-control">
+          
+          <select id="work_order" formControlName="work_order" class="form-control">
+            <option value="Routed To CSD">Routed To CSD</option>
+          </select>
         </div>
 
         <div class="form-group">
           <label for="challan_no">Challan No:</label>
-          <input id="challan_no" formControlName="challan_no" class="form-control">
+          <select id="challan_no" formControlName="challan_no" class="form-control">
+            <option value="Routed To CSD">Routed To CSD</option>
+          </select>
         </div>
 
 
@@ -160,10 +177,24 @@
  
     </div>
 
-
-
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">{{ isEdit ? 'Update' : 'Add' }} Asset</button>
-    </div>
+    <form [formGroup]="assetForm" (ngSubmit)="onSubmit()">
+      <!-- Form Controls Here -->
+      <div class="form-group">
+        <button 
+          type="submit" 
+          class="btn btn-primary bg-green-900 hover:bg-gren-700 text-white font-bold py-2 px-4 rounded"
+          [ngClass]="{
+            'bg-gray-400 text-gray-600 cursor-not-allowed': assetForm.invalid,
+            'bg-green-900 hover:bg-green-700 cursor-pointer': !assetForm.invalid
+          }"
+          [disabled]="assetForm.invalid">
+          {{ isEdit ? 'Update' : 'Add' }} Asset
+        </button>
+      </div>
+    </form>
+    
+    
+    
+    
   </form>
 </div>

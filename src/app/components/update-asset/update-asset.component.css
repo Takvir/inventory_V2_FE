@@ -1,7 +1,7 @@
 /* asset-manager.component.css */
 .form-container {
-    width: 100%;
-    max-width: 1200px; /* Adjust as needed */
+    width: 98%;
+    /* Adjust as needed */
     margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
@@ -13,7 +13,9 @@
   .asset-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 16px;
+    margin-left: 140px;
+
   }
   
   .form-row {
@@ -24,7 +26,9 @@
   
   .form-group {
     flex: 1;
+    
   }
+
   
   .form-group-inline {
     flex: 1 1 0;
@@ -33,12 +37,12 @@
   .form-control {
     border: 1px solid #ddd;
     border-radius: 4px;
-    padding: 8px;
+    padding: 3px;
     width: 100%;
   }
   
   .submit-button {
-    padding: 8px 12px; /* Adjusted padding for smaller height */
+    padding: 4px 12px; /* Adjusted padding for smaller height */
     border: none;
     border-radius: 4px;
     background-color: #02724b;
@@ -62,38 +66,47 @@
     transition: none; /* Remove transition effect for disabled state */
   }
   
-  .asset-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
   
-  /* Table headers and cells */
-  .asset-table th, .asset-table td {
-    border: 1px solid #ddd;
-    padding: 6px; /* Adjusted padding */
-    text-align: left;
-    font-size: 12px; /* Smaller text size */
-  }
+.asset-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+
   
-  /* Table header styling */
-  .asset-table th {
-    background-color: #f4f4f4;
-    color: #333;
-    font-size: 14px; /* Smaller header text size */
-    font-weight: bold;
-  }
+}
+
+/* Table headers and cells */
+.asset-table th, .asset-table td {
+  border: 1px dotted #1a0f0f;
+  padding: 6px; /* Adjusted padding */
+  text-align: left;
+  font-size: 11px; /* Smaller text size */
   
-  /* Zebra striping for rows */
-  .asset-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  /* Hover effect for rows */
-  .asset-table tr:hover {
-    background-color: #ddd;
-  }
-  
+}
+
+/* Table header styling */
+.asset-table th {
+  background-color: #ddffc1b2;
+  color: #333;
+  font-size: 12px; /* Smaller header text size */
+  font-weight: bold;
+}
+
+/* Zebra striping for rows */
+/* .asset-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+} */
+
+/* Hover effect for rows */
+.asset-table tr:hover {
+  background-color: #ddd;
+}
+
+.routed-to-csd {
+  color: rgb(73, 120, 247); /* Change this to your desired color */
+}
+
+
   /* No data message */
   .no-data {
     margin-top: 20px;

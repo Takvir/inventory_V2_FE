@@ -63,9 +63,9 @@
           <td>{{ asset.desktop_name }}</td>
           <td>{{ asset.configuration }}</td>
           <td [ngClass]="{'text-red-500': isFAD(asset.tag_name)}">{{ asset.tag_name }}</td>
-          <td>{{ asset.warranty | date }}</td>
+          <td>{{ asset.warranty }}</td>
           <td>{{ asset.price }}</td>
-          <td>{{ asset.purchase_date | date }}</td>
+          <td>{{ asset.purchase_date}}</td>
           <td>{{ asset.status }}</td>
           <td>{{ asset.serial_number }}</td>
           

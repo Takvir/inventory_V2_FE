@@ -264,6 +264,14 @@ export class UpdateAssetComponent implements OnInit {
     return tagName === 'Routed To FAD';
   }
 
+  isValueNaN(value: any): boolean {
+    return isNaN(value);
+  }
+  isValidDate(date: any): boolean {
+    return date instanceof Date && !isNaN(date.getTime());
+  }
+
+
   calculateAssetValue(purchaseDate: Date, price: number): number {
     const currentDate = new Date();
     const purchaseDateObj = new Date(purchaseDate);

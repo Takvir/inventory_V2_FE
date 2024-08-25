@@ -1,7 +1,7 @@
 <!-- Asset Form for Viewing Assets -->
 <div>
     <div class="form-container">
-      <h4 class="text-center text-gray-600  ">UPDATE ASSET</h4>
+     
   
       <form [formGroup]="viewAssetsForm" (ngSubmit)="loadAssets()" class="asset-form">
         <div class="form-row">
@@ -82,16 +82,19 @@
             <td>{{ asset.serial_number }}</td>
             <td [ngClass]="{'text-red-500': isFAD(asset.tag_name)}">{{ asset.tag_name }}</td>
   
-            <td>{{ asset.warranty | date }}</td>
-            <td>{{ asset.price }}</td>
-            <td>{{ asset.purchase_date | date }}</td>
+            <td [ngClass]="{ 'text-blue-500': asset.warranty === 'Routed To CSD' }">{{ asset.warranty }}</td>
+            <td [ngClass]="{'text-blue-500': isValueNaN(asset.price)}">{{ asset.price }}</td>
+            <td [ngClass]="{'text-blue-500': !isValidDate(asset.purchase_date)}">{{ asset.purchase_date }}</td>
             <td>{{ asset.status }}</td>
             <td>{{ calculateAssetValue(asset.purchase_date, asset.price) }}</td>
             <td>{{ asset.OS }} </td>
             <td>{{ asset.RAM }} </td>
             <td>{{ asset.Storage }} </td>
-            <td>{{ asset.work_order }}</td>
-            <td>{{ asset.challan_no }}</td>
+            <td [ngClass]="{ 'text-blue-500': asset.work_order === 'Routed To CSD' }">{{ asset.work_order }}</td>
+            <td [ngClass]="{ 'routed-to-csd': asset.challan_no === 'Routed To CSD' }">{{ asset.challan_no }}</td>
+
+
+
             
             
             

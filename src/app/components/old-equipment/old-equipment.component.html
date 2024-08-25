@@ -1,138 +1,211 @@
+
+
 <div class="asset-container">
-  <h1 class="form-heading">New Asset</h1>
-
+ 
   <form [formGroup]="assetForm" (ngSubmit)="onSubmit()" class="asset-form">
-    <div class="form-row">
-      <div class="form-group">
-        <label for="branch_id">Branch:</label>
-        <select formControlName="branch_id" id="branch_id" class="form-control" (change)="onBranchChange($event)" required>
-          <option *ngFor="let branch of branches" [value]="branch.branch_id">{{ branch.branch_name }}</option>
-        </select>
-      </div>
+    <div class="form-section bg-gray-100 p-3">
 
-      <div class="form-group">
-        <label for="branch_name">Owner Name:</label>
-        <input id="branch_name" formControlName="branch_name" class="form-control" readonly>
+      <h2 class="section-heading text-blue-700 inline-block border-b-2 border-gray-300">Old Asset (Branch Entry)</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="branch_id">Branch:</label>
+          <select formControlName="branch_id" id="branch_id" class="form-control" (change)="onBranchChange($event)" required>
+            <option *ngFor="let branch of branches" [value]="branch.branch_id">{{ branch.branch_name }}</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="branch_name">Owner Name:</label>
+          <input id="branch_name" formControlName="branch_name" class="form-control" readonly>
+        </div>
+  
+        <div class="form-group">
+          <label for="sub_branch">Division:</label>
+          <select id="sub_branch" formControlName="sub_branch" class="form-control">
+            <option *ngFor="let option of subBranchOptions" [value]="option">{{ option }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="group_id">Asset Group:</label>
+          <select formControlName="group_id" id="group_id" class="form-control" required (change)="onGroupChange($event)">
+            <option *ngFor="let group of groups" [value]="group.group_id">{{ group.group_name }}</option>
+          </select>
+        </div>
       </div>
+  
+      <div class="form-row">
+  
+  
+        <div class="form-group">
+          <label for="desktop_name">Device Name:</label>
+          <select id="desktop_name" formControlName="desktop_name" class="form-control" *ngIf="isCpuGroup || isLaptopGroup || isMonitorGroup || isScannerrGroup || isPrinterBrtaGroup || isPrinterBranchGroup || isIpPhoneSetGroup || isOfflineUpsGroup ">
+            <option *ngFor="let device of deviceOptions" [value]="device">{{ device }}</option>
+          </select>
 
-      <div class="form-group">
-        <label for="sub_branch">Division:</label>
-        <select id="sub_branch" formControlName="sub_branch" class="form-control">
-          <option *ngFor="let option of subBranchOptions" [value]="option">{{ option }}</option>
-        </select>
+          <input *ngIf="!isCpuGroup && !isLaptopGroup && !isMonitorGroup && !isScannerrGroup && !isPrinterBrtaGroup && !isPrinterBranchGroup && !isIpPhoneSetGroup && !isOfflineUpsGroup" id="desktop_name" formControlName="desktop_name" class="form-control">
+        </div>
+  
+        <div class="form-group">
+          <label for="configuration">Model Name / Configuration:</label>
+          <select id="configuration" formControlName="configuration" class="form-control" *ngIf="isCpuGroup || isLaptopGroup || isMonitorGroup || isScannerrGroup || isPrinterBrtaGroup || isPrinterBranchGroup || isIpPhoneSetGroup || isOfflineUpsGroup ">
+            <option *ngFor="let config of configOptions" [value]="config">{{ config }}</option>
+          </select>
+          <input *ngIf="!isCpuGroup && !isLaptopGroup && !isMonitorGroup && !isScannerrGroup && !isPrinterBrtaGroup && !isPrinterBranchGroup && !isIpPhoneSetGroup && !isOfflineUpsGroup" id="configuration" formControlName="configuration" class="form-control">
+        </div>
+  
+        <div class="form-group">
+          <label for="serial_number">Serial Number:</label>
+          <input id="serial_number" formControlName="serial_number" class="form-control">
+        </div>
+  
+        <div class="form-group">
+          <label for="OS">Operating System:</label>
+          <select id="OS" formControlName="OS" class="form-control" *ngIf="isCpuGroup || isLaptopGroup || isMonitorGroup || isScannerrGroup || isPrinterBrtaGroup || isPrinterBranchGroup || isIpPhoneSetGroup || isOfflineUpsGroup ">
+            <option *ngFor="let config of osOptions" [value]="config">{{ config }}</option>
+          </select>
+          <input *ngIf="!isCpuGroup && !isLaptopGroup && !isMonitorGroup && !isScannerrGroup && !isPrinterBrtaGroup && !isPrinterBranchGroup && !isIpPhoneSetGroup && !isOfflineUpsGroup" id="OS" formControlName="OS" class="form-control">
+        </div>
+  
+  
       </div>
+  
+  
+  
+      <div class="form-row">
+  
+       <div class="form-group">
+          <label for="RAM">RAM:</label>
+          <select id="RAM" formControlName="RAM" class="form-control" *ngIf="isCpuGroup || isLaptopGroup || isMonitorGroup || isScannerrGroup || isPrinterBrtaGroup || isPrinterBranchGroup || isIpPhoneSetGroup || isOfflineUpsGroup ">
+            <option *ngFor="let config of ramOptions" [value]="config">{{ config }}</option>
+          </select>
+          <input *ngIf="!isCpuGroup && !isLaptopGroup && !isMonitorGroup && !isScannerrGroup && !isPrinterBrtaGroup && !isPrinterBranchGroup && !isIpPhoneSetGroup && !isOfflineUpsGroup" id="RAM" formControlName="RAM" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="Storage">Storage:</label>
+          <select id="Storage" formControlName="Storage" class="form-control" *ngIf="isCpuGroup || isLaptopGroup || isMonitorGroup || isScannerrGroup || isPrinterBrtaGroup || isPrinterBranchGroup || isIpPhoneSetGroup || isOfflineUpsGroup ">
+            <option *ngFor="let config of storageOptions" [value]="config">{{ config }}</option>
+          </select>
+          <input *ngIf="!isCpuGroup && !isLaptopGroup && !isMonitorGroup && !isScannerrGroup && !isPrinterBrtaGroup && !isPrinterBranchGroup && !isIpPhoneSetGroup && !isOfflineUpsGroup" id="Storage" formControlName="Storage" class="form-control" value="N/A">
+        </div>
+  
+        <div class="form-group">
+          <label for="status">Status:</label>
+          <select id="status" formControlName="status" class="form-control">
+            <option value="Active">In Use</option>
+            <option value="Inactive">In Stock</option>
+            <option value="Faulty">Out Of Order</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="asset_get_by">Purchase From:</label>
+          
+          <select id="asset_get_by" formControlName="asset_get_by" class="form-control">
+            <option value="Smart Technologies">Smart Technologies</option>
+            <option value="Star Tech">Star Tech</option>
+            <option value="Rayans">Rayans</option>
+          </select>
+        </div>
+  
+     
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="tag_name">Tag Name:</label>
+          <input id="tag_name" formControlName="tag_name" class="form-control">
+        </div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+      </div>
+    
     </div>
 
-    <div class="form-row">
-      <div class="form-group">
-        <label for="group_id">Asset Group:</label>
-        <select formControlName="group_id" id="group_id" class="form-control" required (change)="onGroupChange($event)">
-          <option *ngFor="let group of groups" [value]="group.group_id">{{ group.group_name }}</option>
-        </select>
-      </div>
 
 
-      <div class="form-group">
-        <label for="desktop_name">Device Name:</label>
-        <select id="desktop_name" formControlName="desktop_name" class="form-control" *ngIf="isCpuGroup || isLaptopGroup || isMonitorGroup || isScannerrGroup || isPrinterBrtaGroup || isPrinterBranchGroup || isIpPhoneSetGroup || isOfflineUpsGroup ">
-          <option *ngFor="let device of deviceOptions" [value]="device">{{ device }}</option>
-        </select>
-        <input *ngIf="!isCpuGroup && !isLaptopGroup && !isMonitorGroup && !isScannerrGroup && !isPrinterBrtaGroup && !isPrinterBranchGroup && !isIpPhoneSetGroup && !isOfflineUpsGroup" id="desktop_name" formControlName="desktop_name" class="form-control">
+
+
+
+    <!-- <div class="form-section bg-slate-200 p-3">
+      <h2 class="section-heading text-red-700">Finance Administration Division (FAD)</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="tag_name">Tag Name:</label>
+          <input id="tag_name" formControlName="tag_name" class="form-control">
+        </div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
+        <div class="form-group"></div>
       </div>
+    </div> -->
+
+
+    <div class="form-section bg-slate-300 p-3">
+      <h2 class="section-heading text-green-700 inline-block border-b-2 border-gray-400">Common Service Division (CSD) </h2>
+      <div class="form-row">
+
+        <div class="form-group">
+          <label for="price">Price:</label>
+          <select id="price" formControlName="price" class="form-control">
+            <option value="Routed To CSD">Routed To CSD</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="warranty">Warranty (End of Support):</label>
+          <select id="warranty" formControlName="warranty" class="form-control">
+            <option value="Routed To CSD">Routed To CSD</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="purchase_date">Purchase Date:</label>
+           <select id="purchase_date" formControlName="purchase_date" class="form-control">
+            <option value="Routed To CSD">Routed To CSD</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="work_order">Work Order:</label>
+          
+          <select id="work_order" formControlName="work_order" class="form-control">
+            <option value="Routed To CSD">Routed To CSD</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="challan_no">Challan No:</label>
+          <select id="challan_no" formControlName="challan_no" class="form-control">
+            <option value="Routed To CSD">Routed To CSD</option>
+          </select>
+        </div>
+
+
+
       
-      <div class="form-group">
-        <label for="configuration">Model Name / Configuration:</label>
-        <select id="configuration" formControlName="configuration" class="form-control" *ngIf="isCpuGroup || isLaptopGroup || isMonitorGroup || isScannerrGroup || isPrinterBrtaGroup || isPrinterBranchGroup || isIpPhoneSetGroup || isOfflineUpsGroup ">
-          <option *ngFor="let config of configOptions" [value]="config">{{ config }}</option>
-        </select>
-        <input *ngIf="!isCpuGroup && !isLaptopGroup && !isMonitorGroup && !isScannerrGroup && !isPrinterBrtaGroup && !isPrinterBranchGroup && !isIpPhoneSetGroup && !isOfflineUpsGroup" id="configuration" formControlName="configuration" class="form-control">
       </div>
+
+ 
     </div>
 
-
-    <div class="form-row">
+    <form [formGroup]="assetForm" (ngSubmit)="onSubmit()">
+      <!-- Form Controls Here -->
       <div class="form-group">
-        <label for="tag_name">Tag Name:</label>
-        <input id="tag_name" formControlName="tag_name" class="form-control">
+        <button 
+          type="submit" 
+          class="btn btn-primary bg-green-900 hover:bg-gren-700 text-white font-bold py-2 px-4 rounded"
+          [ngClass]="{
+            'bg-gray-400 text-gray-600 cursor-not-allowed': assetForm.invalid,
+            'bg-green-900 hover:bg-green-700 cursor-pointer': !assetForm.invalid
+          }"
+          [disabled]="assetForm.invalid">
+          {{ isEdit ? 'Update' : 'Add' }} Asset
+        </button>
       </div>
-
-      <div class="form-group">
-        <label for="serial_number">Serial Number:</label>
-        <input id="serial_number" formControlName="serial_number" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="OS">Operating System:</label>
-        <select id="OS" formControlName="OS" class="form-control" *ngIf="isCpuGroup || isLaptopGroup || isMonitorGroup || isScannerrGroup || isPrinterBrtaGroup || isPrinterBranchGroup || isIpPhoneSetGroup || isOfflineUpsGroup ">
-          <option *ngFor="let config of osOptions" [value]="config">{{ config }}</option>
-        </select>
-        <input *ngIf="!isCpuGroup && !isLaptopGroup && !isMonitorGroup && !isScannerrGroup && !isPrinterBrtaGroup && !isPrinterBranchGroup && !isIpPhoneSetGroup && !isOfflineUpsGroup" id="OS" formControlName="OS" class="form-control">
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label for="RAM">RAM:</label>
-        <select id="RAM" formControlName="RAM" class="form-control" *ngIf="isCpuGroup || isLaptopGroup || isMonitorGroup || isScannerrGroup || isPrinterBrtaGroup || isPrinterBranchGroup || isIpPhoneSetGroup || isOfflineUpsGroup ">
-          <option *ngFor="let config of ramOptions" [value]="config">{{ config }}</option>
-        </select>
-        <input *ngIf="!isCpuGroup && !isLaptopGroup && !isMonitorGroup && !isScannerrGroup && !isPrinterBrtaGroup && !isPrinterBranchGroup && !isIpPhoneSetGroup && !isOfflineUpsGroup" id="RAM" formControlName="RAM" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="Storage">Storage:</label>
-        <select id="Storage" formControlName="Storage" class="form-control" *ngIf="isCpuGroup || isLaptopGroup || isMonitorGroup || isScannerrGroup || isPrinterBrtaGroup || isPrinterBranchGroup || isIpPhoneSetGroup || isOfflineUpsGroup ">
-          <option *ngFor="let config of storageOptions" [value]="config">{{ config }}</option>
-        </select>
-        <input *ngIf="!isCpuGroup && !isLaptopGroup && !isMonitorGroup && !isScannerrGroup && !isPrinterBrtaGroup && !isPrinterBranchGroup && !isIpPhoneSetGroup && !isOfflineUpsGroup" id="Storage" formControlName="Storage" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="warranty">Warranty (End of Support):</label>
-        <input id="warranty" formControlName="warranty" class="form-control" type="date">
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label for="price">Price:</label>
-        <input id="price" formControlName="price" class="form-control" type="number">
-      </div>
-
-      <div class="form-group">
-        <label for="purchase_date">Purchase Date:</label>
-        <input id="purchase_date" formControlName="purchase_date" class="form-control" type="date">
-      </div>
-
-      <div class="form-group">
-        <label for="status">Status:</label>
-        <select id="status" formControlName="status" class="form-control">
-          <option value="Active">In Use</option>
-          <option value="Inactive">In Stock</option>
-          <option value="Faulty">Out Of Order</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label for="asset_get_by">Asset Get By:</label>
-        <input id="asset_get_by" formControlName="asset_get_by" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="work_order">Work Order:</label>
-        <input id="work_order" formControlName="work_order" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="challan_no">Challan No:</label>
-        <input id="challan_no" formControlName="challan_no" class="form-control">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">{{ isEdit ? 'Update' : 'Add' }} Asset</button>
-    </div>
+    </form>
+    
+    
+    
+    
   </form>
 </div>

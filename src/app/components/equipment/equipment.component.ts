@@ -80,10 +80,10 @@ export class EquipmentComponent implements OnInit {
       group_id: ['', Validators.required],
       desktop_name: ['', Validators.required],
       configuration: ['', Validators.required],
-      tag_name: ['', Validators.required],
-      warranty: ['', Validators.required],
-      price: ['', Validators.required],
-      purchase_date: ['', Validators.required],
+      tag_name: ['Routed To FAD', Validators.required],
+      warranty: ['Routed To CSD', Validators.required],
+      price: ['Routed To CSD', Validators.required],
+      purchase_date: ['Routed To CSD', Validators.required],
       status: ['', Validators.required],
       asset_get_by: ['', Validators.required],
       serial_number: ['', Validators.required],
@@ -91,8 +91,8 @@ export class EquipmentComponent implements OnInit {
       OS: ['', Validators.required],
       RAM: ['', Validators.required],
       Storage: ['', Validators.required],
-      work_order: ['', Validators.required],
-      challan_no: ['', Validators.required],
+      work_order: ['Routed To CSD', Validators.required],
+      challan_no: ['Routed To CSD', Validators.required],
     });
   }
 

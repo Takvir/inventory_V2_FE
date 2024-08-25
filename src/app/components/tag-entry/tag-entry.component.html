@@ -1,10 +1,12 @@
 <!-- Asset Form for Viewing Assets -->
 <div>
+
   <div class="form-container">
-    <h4 class="text-center text-gray-600  ">FAD TAG ENTRY</h4>
+
 
     <form [formGroup]="viewAssetsForm" (ngSubmit)="loadAssets()" class="asset-form">
       <div class="form-row">
+        
         <div class="form-group form-group-inline">
           <select formControlName="branch_id" id="branch" class="form-control" (change)="onBranchChange($event)">
             <option value="">Select Branch</option>
@@ -53,17 +55,18 @@
           <th>Device Name</th>
           <th>Configuration</th>
           <th>Serial Number</th>
-          <th>Tag Name</th>
-          <th>Warranty (End of Support)</th>
+         
+          
           <th>Price</th>
-          <th>Purchase Date</th>
+          
           <th>Status</th>
           <th>Asset Value</th>
-          <th>Operating System</th>
-          <th>RAM</th>
-          <th>Storage</th>
-          <th>Work Order</th>
-          <th>Challan No.</th>
+        
+          <th>Purchase Date</th>
+          <th>Warranty</th>
+          <th>Tag Name</th>
+          <!-- <th>Work Order</th>
+          <th>Challan No.</th> -->
           <!-- <th>Asset Get By</th> -->
 
 
@@ -80,18 +83,20 @@
           <td>{{ asset.desktop_name }}</td>
           <td>{{ asset.configuration }}</td>
           <td>{{ asset.serial_number }}</td>
-          <td [ngClass]="{'text-red-500': isFAD(asset.tag_name)}" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">{{ asset.tag_name }}</td>
+         
 
-          <td>{{ asset.warranty | date }}</td>
-          <td>{{ asset.price }}</td>
-          <td>{{ asset.purchase_date | date }}</td>
+          
+          <td [ngClass]="{'text-blue-500': isValueNaN(asset.price)}">{{ asset.price }}</td>
+
+          
           <td>{{ asset.status }}</td>
           <td>{{ calculateAssetValue(asset.purchase_date, asset.price) }}</td>
-          <td>{{ asset.OS }} </td>
-          <td>{{ asset.RAM }} </td>
-          <td>{{ asset.Storage }} </td>
-          <td>{{ asset.work_order }}</td>
-          <td>{{ asset.challan_no }}</td>
+
+          <td [ngClass]="{'text-blue-500': !isValidDate(asset.purchase_date)}">{{ asset.purchase_date }}</td>
+          <td [ngClass]="{ 'text-blue-500': asset.warranty === 'Routed To CSD' }">{{ asset.warranty }}</td>
+          <td [ngClass]="{'text-red-500': isFAD(asset.tag_name)}" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">{{ asset.tag_name }}</td>
+          <!-- <td>{{ asset.work_order }}</td>
+          <td>{{ asset.challan_no }}</td> -->
           <!-- <td>{{ asset.asset_get_by }}</td> -->
 
 

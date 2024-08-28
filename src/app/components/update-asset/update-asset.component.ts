@@ -270,7 +270,10 @@ export class UpdateAssetComponent implements OnInit {
   isValidDate(date: any): boolean {
     return date instanceof Date && !isNaN(date.getTime());
   }
-
+  isRoutedToCSD(date: any): boolean {
+    return typeof date === 'string' && date === 'Routed To CSD';
+  }
+  
 
   calculateAssetValue(purchaseDate: Date, price: number): number {
     const currentDate = new Date();

@@ -36,7 +36,7 @@
 /* Form controls */
 .form-control {
   width: 100%; /* Adjusted width to full container */
-  padding: 7px;
+  padding: 3px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 14px;
@@ -51,7 +51,7 @@
 
 /* Submit button */
 .submit-button {
-  padding: 8px 12px; /* Adjusted padding for smaller height */
+  padding: 4px 12px; /* Adjusted padding for smaller height */
   border: none;
   border-radius: 4px;
   background-color: #02724b;
@@ -59,7 +59,7 @@
   font-size: 14px; /* Adjusted font size to match form controls */
   cursor: pointer;
   transition: background-color 0.3s ease;
-  align-self: flex-start; /* Adjust alignment if needed */
+  align-self: flex-start;/* Adjust alignment if needed */
 }
 
 /* Submit button hover effect */

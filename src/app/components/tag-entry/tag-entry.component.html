@@ -86,15 +86,18 @@
          
 
           
-          <td [ngClass]="{'text-blue-500': isValueNaN(asset.price)}">{{ asset.price }}</td>
+          <td [ngClass]="{'text-blue-500 font-semibold font-sans': isValueNaN(asset.price)}">{{ asset.price }}</td>
 
           
           <td>{{ asset.status }}</td>
           <td>{{ calculateAssetValue(asset.purchase_date, asset.price) }}</td>
 
-          <td [ngClass]="{'text-blue-500': !isValidDate(asset.purchase_date)}">{{ asset.purchase_date }}</td>
-          <td [ngClass]="{ 'text-blue-500': asset.warranty === 'Routed To CSD' }">{{ asset.warranty }}</td>
-          <td [ngClass]="{'text-red-500': isFAD(asset.tag_name)}" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">{{ asset.tag_name }}</td>
+          <td [ngClass]="{'text-blue-500 font-semibold font-sans': isRoutedToCSD(asset.purchase_date)}">
+            {{ asset.purchase_date }}
+          </td>
+          
+          <td [ngClass]="{ 'text-blue-500 font-semibold font-sans': asset.warranty === 'Routed To CSD' }">{{ asset.warranty }}</td>
+          <td [ngClass]="{'text-red-500 font-semibold font-sans': isFAD(asset.tag_name)}" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">{{ asset.tag_name }}</td>
           <!-- <td>{{ asset.work_order }}</td>
           <td>{{ asset.challan_no }}</td> -->
           <!-- <td>{{ asset.asset_get_by }}</td> -->

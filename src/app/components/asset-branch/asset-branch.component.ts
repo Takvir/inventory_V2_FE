@@ -207,6 +207,13 @@ export class AssetBranchComponent implements OnInit {
     return tagName === 'Routed To FAD';
   }
 
+  isValueNaN(value: any): boolean {
+    return isNaN(value);
+  }
+  isRoutedToCSD(date: any): boolean {
+    return typeof date === 'string' && date === 'Routed To CSD';
+  }
+  
 
   calculateAssetValue(purchaseDate: Date, price: number): number {
     const currentDate = new Date();

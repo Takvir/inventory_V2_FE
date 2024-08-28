@@ -1,7 +1,7 @@
 <div>
 
   <div class="form-container">
-    <h4 class="text-center text-gray-600  ">Branch Asset Check</h4>
+    
     <form [formGroup]="assetForm" (ngSubmit)="loadAssets()" class="asset-form">
       <div class="form-group">
         <select formControlName="branchId" id="branch" class="form-control" (change)="onBranchChange($event)">
@@ -63,9 +63,11 @@
           <td>{{ asset.desktop_name }}</td>
           <td>{{ asset.configuration }}</td>
           <td [ngClass]="{'text-red-500': isFAD(asset.tag_name)}">{{ asset.tag_name }}</td>
-          <td>{{ asset.warranty }}</td>
-          <td>{{ asset.price }}</td>
-          <td>{{ asset.purchase_date}}</td>
+          <td [ngClass]="{ 'text-blue-500 font-semibold font-sans': asset.warranty === 'Routed To CSD' }">{{ asset.warranty }}</td>
+          <td [ngClass]="{'text-blue-500 font-semibold font-sans': isValueNaN(asset.price)}">{{ asset.price }}</td>
+          <td [ngClass]="{'text-blue-500 font-semibold font-sans': isRoutedToCSD(asset.purchase_date)}">
+            {{ asset.purchase_date }}
+          </td>
           <td>{{ asset.status }}</td>
           <td>{{ asset.serial_number }}</td>
           

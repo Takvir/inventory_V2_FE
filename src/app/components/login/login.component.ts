@@ -34,11 +34,11 @@ export class LoginComponent implements OnInit {
         // Determine the route based on user type
         let navigateTo: string;
         if (userType === 'superadmin') {
-          navigateTo = '/equipment';
+          navigateTo = '/old-entry';
         } else if (userType === 'admin') {
-          navigateTo = '/equipment';
+          navigateTo = '/old-entry';
         } else if (userType === 'branch') {
-          navigateTo = '/equipment';
+          navigateTo = '/old-entry';
         } else {
           navigateTo = '/branch-list'; // Fallback route
         }

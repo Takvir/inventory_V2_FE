@@ -54,6 +54,7 @@ export class AssetBranchComponent implements OnInit {
   subBranchOptions: string[] = [];
   noDataFound: boolean = false;
   isBranchUser: boolean = false;
+  loading: boolean = false;
 
   constructor(
     private assetService: SectionService,

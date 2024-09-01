@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BranchService } from 'src/app/services/branch/branch.service';
 import { GroupService } from 'src/app/services/group/group.service';
 import { TagAssetService,  } from 'src/app/services/tag-asset/tag-asset.service';
+import { RepairService } from 'src/app/services/repari/repair.service';
+
+
 
 export interface Asset {
   asset_id: number;
@@ -45,69 +48,84 @@ export interface Group2 {
   user_group: string;
 }
 
+export interface Repair {
+  repair_id?: number;
+  asset_id: number;
+  repair_date: string;
+  repair_cost: number;
+  repair_status: string;
+  repair_notes: string;
+  desktop_name : string;
+  group_name : string;
+  branch_name : string;
+  serial_number: string;
+  tag_name: string;
+  branch_id: number;
+}
+
+
+
 @Component({
-  selector: 'app-tag-entry',
-  templateUrl: './tag-entry.component.html',
-  styleUrls: ['./tag-entry.component.css']
+  selector: 'app-repair',
+  templateUrl: './repair.component.html',
+  styleUrls: ['./repair.component.css']
 })
-export class TagEntryComponent implements OnInit {
+export class RepairComponent implements OnInit {
 
   assets: Asset[] = [];
-  viewAssetsForm!: FormGroup;  // For viewing assets
-  editAssetForm!: FormGroup;   // For editing asset
-  isEdit: boolean = false;
-  editAssetId: number | null = null;
+  viewAssetsForm!: FormGroup;
+  repairForm!: FormGroup;
+  repairs: Repair[] = [];
+
   branches: Branch[] = [];
   groups: Group2[] = [];
   subBranchOptions: string[] = [];
-  noDataFound: boolean = false;
+
+  isBranchUser: boolean = false;
   isBranchDisabled = true;
   isSubBranchDisabled = true;
   isGroupDisabled = true;
+  
+  isEdit: boolean = false;
+  isEditMode: boolean = false;
+  noDataFound: boolean = false;
   loading: boolean = false;
-
-
-  isBranchUser: boolean = false;
 
   constructor(
     private tagService: TagAssetService,
     private branchService: BranchService,
     private groupService: GroupService,
+    private repairService: RepairService,
     private fb: FormBuilder
   ) {
     this.viewAssetsForm = this.fb.group({
       branch_id: ['', Validators.required],
       group_id: ['', Validators.required],
       sub_branch: [{ value: '', disabled: this.isSubBranchDisabled }]
-
     });
 
-    this.editAssetForm = this.fb.group({
-      branch_id: ['', Validators.required],
-      group_id: ['', Validators.required],
-      desktop_name: ['', Validators.required],
-      configuration: ['', Validators.required],
-      tag_name: ['', Validators.required],
-      warranty: ['', Validators.required],
-      price: ['', Validators.required],
-      purchase_date: ['', Validators.required],
-      status: ['', Validators.required],
-      asset_get_by: ['', Validators.required],
-      serial_number: ['', Validators.required],
-      sub_branch: ['', Validators.required],
-      group_name: ['', Validators.required],
-      branch_name: ['', Validators.required],
-      OS: ['', Validators.required],
-      RAM: ['', Validators.required],
-      Storage: ['', Validators.required],
-      work_order: ['', Validators.required],
-      challan_no: ['', Validators.required],
+    this.repairForm = this.fb.group({
+      
+      repair_id: [null, Validators.required],
+      asset_id: [null, Validators.required],
+      repair_date: [null, Validators.required],
+      repair_cost: [null, [Validators.required, Validators.pattern('^[0-9]+(\\.[0-9]{1,2})?$')]],
+      repair_status: [null, Validators.required],
+      repair_notes: [null]
     });
-
-
   }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
+    this.repairForm.get('asset_id')?.valueChanges.subscribe(value => {
+      this.repairForm.get('repair_id')?.setValue(value);
+    });
+
+    
+
+    
+    
+
+    this.loadRepairs();
     this.loadBranches();
     this.loadGroups();
 
@@ -123,6 +141,107 @@ export class TagEntryComponent implements OnInit {
     // this.editAssetForm.get('sub_branch')?.disable();
 
     this.isBranchDisabled = true;
+  }
+
+  loadRepairs(): void {
+    const branchId = localStorage.getItem('branch_id');
+    
+    if (branchId) {
+      const branchIdNum = parseInt(branchId, 10);
+      
+      this.repairService.getRepairs().subscribe({
+        next: (data: Repair[]) => {
+          // Assuming you have a branch_id field in your Repair model that you can filter by
+          this.repairs = data.filter(repair => repair.branch_id === branchIdNum);
+          
+          // Alternatively, if the branch_id is related to the assets in repairs, you can do something like:
+          // this.repairs = data.filter(repair => this.assets.some(asset => asset.asset_id === repair.asset_id && asset.branch_id === branchIdNum));
+  
+          console.log('Repairs filtered by branch:', this.repairs);
+        },
+        error: (err) => {
+          console.error('Error loading repairs:', err);
+        }
+      });
+    } else {
+      console.error('Branch ID not found in local storage');
+    }
+  }
+  
+
+  editRepair(repair: Repair): void {
+    this.repairForm.patchValue({
+      repair_id: repair.repair_id ?? null,  // Ensure repair_id is either a number or null
+      asset_id: repair.asset_id,
+      repair_date: repair.repair_date,
+      repair_cost: repair.repair_cost,
+      repair_status: repair.repair_status,
+      repair_notes: repair.repair_notes
+    });
+    this.isEditMode = true;
+  }
+  
+  openRepairModal(asset: any) {
+    this.isEdit = true;
+    this.isEditMode = true;  // Set this to true if you're editing an existing entry
+
+    // Populate the form with asset data if you're editing
+    this.repairForm.patchValue({
+      
+      asset_id: asset.asset_id,
+      repair_date: asset.repair_date || '',
+      repair_cost: asset.repair_cost || '',
+      repair_status: asset.repair_status || 'Pending',
+      repair_notes: asset.repair_notes || ''
+    });
+  }
+
+  saveRepair(): void {
+    if (this.repairForm.valid) {
+      const repairData: Repair = this.repairForm.value;
+      repairData.asset_id = repairData.asset_id || 0; // Ensure asset_id is set correctly
+      
+      console.log('Repair Data before creating repair:', repairData);
+  
+      this.repairService.createRepair(repairData).subscribe({
+        next: (response) => {
+          console.log('Repair created successfully:', response);
+          this.loadRepairs();
+          this.clearForm();
+        },
+        error: (error) => {
+          console.error('Error creating repair:', error);
+        }
+      });
+    }
+  }
+  
+  
+  
+
+  deleteRepair(id: number): void {
+    if (id) {
+      this.repairService.deleteRepair(id).subscribe({
+        next: (response) => {
+          console.log('Repair deleted successfully:', response);
+          this.loadRepairs();
+        },
+        error: (error) => {
+          console.error('Error deleting repair:', error);
+        }
+      });
+    } else {
+      console.error('Repair ID is not defined or is null');
+    }
+  }
+
+  clearForm(): void {
+    this.repairForm.reset();
+    this.isEditMode = false;
+  }
+
+  closeModal() {
+    this.isEdit = false;
   }
 
   loadBranches(): void {
@@ -247,40 +366,10 @@ export class TagEntryComponent implements OnInit {
     }
   }
 
-  editAsset(assetId: number): void {
-    this.isEdit = true;
-    this.editAssetId = assetId;
-    this.tagService.getAssetById(assetId).subscribe(asset => {
-      this.editAssetForm.patchValue({
-        ...asset,
-        branch_id: asset.branch_id,
-        group_id: asset.group_id
-      });
-    });
+
+ 
 
 
-
-  }
-
-  onSubmit(): void {
-    if (this.editAssetForm.valid) {
-      if (this.isEdit && this.editAssetId) {
-        this.tagService.updateAsset(this.editAssetId, this.editAssetForm.value).subscribe(() => {
-          this.loadAssets();
-          this.resetForm();
-          window.confirm('FAD added successfully!');
-
-        });
-      }
-
-    }
-  }
-
-  resetForm(): void {
-    this.editAssetForm.reset();
-    this.isEdit = false;
-    this.editAssetId = null;
-  }
 
   isFAD(tagName: string): boolean {
     return tagName === 'Routed To FAD';
@@ -318,6 +407,4 @@ export class TagEntryComponent implements OnInit {
       return price * 0.90; // 10% less
     }
   }
-
 }
-

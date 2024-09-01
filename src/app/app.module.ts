@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 
+
+
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTable, MatTableModule} from '@angular/material/table';
@@ -32,6 +34,8 @@ import { TagEntryComponent } from './components/tag-entry/tag-entry.component';
 import { LoginComponent } from './components/login/login.component';
 import { OldEquipmentComponent } from './components/old-equipment/old-equipment.component';
 import { UpdateAssetComponent } from './components/update-asset/update-asset.component';
+import { RepairComponent } from './components/repair/repair.component';
+import { RepairListComponent } from './components/repair-list/repair-list.component';
 
 
 
@@ -56,6 +60,8 @@ import { UpdateAssetComponent } from './components/update-asset/update-asset.com
     LoginComponent,
     OldEquipmentComponent,
     UpdateAssetComponent,
+    RepairComponent,
+    RepairListComponent,
     
   
 

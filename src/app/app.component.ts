@@ -11,6 +11,7 @@ export class AppComponent implements AfterViewInit {
 
   reportOpen = false;
   navOpen = false;
+  repairOpen = false;
 
   isLoginPage = false;
   userType: string | null = null;
@@ -44,6 +45,11 @@ export class AppComponent implements AfterViewInit {
   toggleReport() {
     this.reportOpen = !this.reportOpen;
   }
+
+  toggleRepair() {
+    this.repairOpen = !this.repairOpen;
+  }
+
 
   signOut() {
     localStorage.clear(); // Clear local storage on sign out

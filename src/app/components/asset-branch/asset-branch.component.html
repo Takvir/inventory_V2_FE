@@ -33,6 +33,11 @@
     </form>
   </div>
 
+  <div *ngIf="!loading" class="loading-message">
+    Please Select Branch , Asset Group for Loading Data ... 
+  </div>
+
+
   <div *ngIf="assets.length > 0">
   
     <table class="asset-table">

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 
+
 import { BranchComponent } from './components/branch/branch.component';
 import { EquipmentComponent } from './components/equipment/equipment.component';
 import { AssetAllComponent } from './components/asset-all/asset-all.component';
@@ -14,6 +15,8 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './auth.guard';
 import { OldEquipmentComponent } from './components/old-equipment/old-equipment.component';
 import { UpdateAssetComponent } from './components/update-asset/update-asset.component';
+import { RepairComponent } from './components/repair/repair.component';
+import { RepairListComponent } from './components/repair-list/repair-list.component';
 
 
 const routes: Routes = [
@@ -29,6 +32,8 @@ const routes: Routes = [
   { path: 'tag-entry', component: TagEntryComponent, canActivate: [AuthGuard] },
   { path: 'old-entry', component: OldEquipmentComponent, canActivate: [AuthGuard] },
   { path: 'update-asset', component: UpdateAssetComponent, canActivate: [AuthGuard] },
+  { path: 'repair', component: RepairComponent, canActivate: [AuthGuard] },
+  { path: 'repair-list', component: RepairListComponent, canActivate: [AuthGuard] },
   
 ];
 

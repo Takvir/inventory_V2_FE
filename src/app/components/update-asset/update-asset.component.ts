@@ -59,6 +59,8 @@ export class UpdateAssetComponent implements OnInit {
   isSubBranchDisabled = true;
   isGroupDisabled = true;
 
+  loading: boolean = false;
+
 
   isBranchUser: boolean = false;
 
@@ -165,6 +167,7 @@ export class UpdateAssetComponent implements OnInit {
 
   loadAssets(): void {
     const { branch_id, group_id, sub_branch } = this.viewAssetsForm.value;
+    this.loading = true;
     this.noDataFound = false;
 
     if (branch_id && group_id && sub_branch && sub_branch !== 'Select Division') {

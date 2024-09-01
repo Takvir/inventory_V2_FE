@@ -1,0 +1,80 @@
+<div class="container mx-auto mt-4">
+    <h1 class="text-2xl font-bold mb-4">Repair List</h1>
+    
+    <!-- Repair Table -->
+    <table class="min-w-full bg-white border border-gray-200">
+      <thead>
+        <tr class="text-sm">
+          <th class="border px-1 py-2">Repair ID</th>
+          <th class="border px-1 py-2">Asset ID</th>
+          <th class="border px-1 py-2">Branch Name</th>
+          <th class="border px-1 py-2">Group Name</th>
+          <th class="border px-1 py-2">Asset Name</th>
+          <th class="border px-1 py-2">Serial Number</th>
+          <th class="border px-1 py-2">Tag Number</th>
+          <th class="border px-1 py-2">Repair Date</th>
+          <th class="border px-1 py-2">Repair Cost</th>
+          <th class="border px-1 py-2">Repair Status</th>
+          <th class="border px-1 py-2">Repair Notes</th>
+          <th class="border px-1 py-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let repair of repairs" class="text-xs">
+          <td class="border px-1 py-2 text-center">{{ repair.repair_id }}</td>
+          <td class="border px-1 py-1 text-center">{{ repair.asset_id }}</td>
+          <td class="border px-1 py-1 text-center">{{ repair.branch_name }}</td>
+          <td class="border px-1 py-1 text-center ">{{ repair.group_name }}</td>
+          <td class="border px-1 py-1 text-center">{{ repair.desktop_name }}</td>
+          <td class="border px-1 py-1 text-center">{{ repair.serial_number }}</td>
+          <td class="border px-1 py-1 text-center">{{ repair.tag_name }}</td>
+          <td class="border px-1 py-1 text-center">{{ repair.repair_date | date}}</td>
+          <td class="border px-1 py-1 text-center">{{ repair.repair_cost }}</td>
+          <td class="border px-1 py-1 text-center">{{ repair.repair_status }}</td>
+          <td class="border px-1 py-2">{{ repair.repair_notes }}</td>
+          <td class="border px-4 py-1">
+            <button (click)="openEditModal(repair)" class="bg-green-900 text-white px-3 rounded">Edit</button>
+            <!-- <button (click)="deleteRepair(repair.repair_id)" class="bg-red-500 text-white px-4 py-2 rounded">Delete</button> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Edit Modal -->
+ <!-- Edit Modal -->
+<div *ngIf="isModalOpen" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+      <h2 class="text-xl font-bold mb-4">Edit Repair</h2>
+      <form [formGroup]="repairForm" (ngSubmit)="saveRepair()">
+        <div class="mb-4">
+          <label for="asset_id" class="block text-sm font-medium text-gray-700">Asset ID</label>
+          <input id="asset_id" formControlName="asset_id" type="number" class="p-1 bg-slate-100 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+        </div>
+        <div class="mb-4">
+          <label for="repair_date" class="block text-sm font-medium text-gray-700">Repair Date</label>
+          <input id="repair_date" formControlName="repair_date" type="date" class="p-1 bg-slate-100 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+        </div>
+        <div class="mb-4">
+          <label for="repair_cost" class="block text-sm font-medium text-gray-700">Repair Cost</label>
+          <input id="repair_cost" formControlName="repair_cost" type="number" class="p-1 bg-slate-100 mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+        </div>
+        <div class="mb-4">
+          <label for="repair_status" class="block text-sm font-medium text-gray-700">Repair Status</label>
+          <select id="repair_status" formControlName="repair_status" class="p-1 bg-slate-100 form-control mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+            <option value="Completed">Completed</option>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <label for="repair_notes" class="block text-sm font-medium text-gray-700">Repair Notes</label>
+          <textarea id="repair_notes" formControlName="repair_notes" class="p-1 bg-slate-100 mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
+        </div>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+        <button type="button" (click)="closeEditModal()" class="bg-gray-500 text-white px-4 py-2 rounded ml-2">Cancel</button>
+      </form>
+    </div>
+  </div>
+  
+  </div>
+  

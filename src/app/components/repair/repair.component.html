@@ -1,0 +1,222 @@
+<!-- Asset Form for Viewing Assets -->
+<div>
+
+    <div class="form-container">
+  
+  
+      <form [formGroup]="viewAssetsForm" (ngSubmit)="loadAssets()" class="asset-form">
+        <div class="form-row">
+          
+          <div class="form-group form-group-inline">
+            <select formControlName="branch_id" id="branch" class="form-control" (change)="onBranchChange($event)">
+              <option value="">Select Branch</option>
+              <option *ngFor="let branch of branches" [value]="branch.branch_id">{{ branch.branch_name }}</option>
+            </select>
+          </div>
+  
+          <div class="form-group form-group-inline">
+            <select formControlName="group_id" id="group" class="form-control">
+              <option value="">Select Group</option>
+              <option *ngFor="let group of groups" [value]="group.group_id">{{ group.group_name }}</option>
+            </select>
+          </div>
+  
+          <div class="form-group form-group-inline">
+            <select formControlName="sub_branch" id="subBranch" class="form-control" [disabled]="!viewAssetsForm.get('branch_id')?.value">
+              <option value="">Select Division</option>
+              <option *ngFor="let option of subBranchOptions" [value]="option">{{ option }}</option>
+            </select>
+          </div>
+  
+          <div class="form-group form-group-inline">
+            <button
+            type="submit"
+            class="submit-button"
+  
+            [disabled]="isBranchUser && !viewAssetsForm.get('branch_id')?.value">
+            Load Assets
+          </button>
+          </div>
+  
+        </div>
+      </form>
+    </div>
+
+    <div *ngIf="!loading" class="loading-message">
+      Please Select Branch , Asset Group for Loading Data ... 
+    </div>
+  
+  
+    <div *ngIf="assets.length > 0">
+  
+      <table class="asset-table">
+        <thead>
+          <tr>
+            <!-- <th>ID</th> -->
+            <th>S. No.</th>
+            <th>Branch</th>
+            <th>Division</th>
+            <th>Asset Group</th>
+            <th>Device Name</th>
+            <th>Configuration</th>
+            <th>Serial Number</th>
+           
+            
+            <th>Price</th>
+            
+            <th>Status</th>
+            <th>Asset Value</th>
+          
+            <th>Purchase Date</th>
+            <th>Warranty</th>
+            <th>Tag Name</th>
+            <!-- <th>Work Order</th>
+            <th>Challan No.</th> -->
+            <!-- <th>Asset Get By</th> -->
+  
+  
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let asset of assets let i = index">
+            <!-- <td>{{ asset.asset_id }}</td> -->
+            <td>{{i+1}}</td>
+            <td >{{ asset.branch_name }}</td>
+            <td>{{ asset.sub_branch }}</td>
+            <td style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">{{ asset.group_name }}</td>
+            <td>{{ asset.desktop_name }}</td>
+            <td>{{ asset.configuration }}</td>
+            <td>{{ asset.serial_number }}</td>
+           
+  
+            
+            <td [ngClass]="{'text-blue-500 font-semibold font-sans': isValueNaN(asset.price)}">{{ asset.price }}</td>
+  
+            
+            <td>{{ asset.status }}</td>
+            <td>{{ calculateAssetValue(asset.purchase_date, asset.price) }}</td>
+  
+            <td [ngClass]="{'text-blue-500 font-semibold font-sans': isRoutedToCSD(asset.purchase_date)}">
+              {{ asset.purchase_date }}
+            </td>
+            
+            <td [ngClass]="{ 'text-blue-500 font-semibold font-sans': asset.warranty === 'Routed To CSD' }">{{ asset.warranty }}</td>
+            <td [ngClass]="{'text-red-500 font-semibold font-sans': isFAD(asset.tag_name)}" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">{{ asset.tag_name }}</td>
+            <!-- <td>{{ asset.work_order }}</td>
+            <td>{{ asset.challan_no }}</td> -->
+            <!-- <td>{{ asset.asset_get_by }}</td> -->
+  
+  
+            <td>
+              <button (click)="openRepairModal(asset)" class="bg-green-800 py-0 px-2 rounded-md text-white">Repair</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div *ngIf="noDataFound" class="no-data">
+      No Data Found
+    </div>
+  </div>
+  
+  <div  *ngIf="assets.length > 0" class="mt-5">
+   
+    <h3>Repair List</h3>
+    <table class="min-w-full bg-white border border-gray-200">
+     
+      <thead>
+        <tr class="text-sm">
+          <th class="border px-1 py-2">Repair ID</th>
+        
+          <th class="border px-1 py-2">Branch Name</th>
+          <th class="border px-1 py-2">Group Name</th>
+          <th class="border px-1 py-2">Asset Name</th>
+          <th class="border px-1 py-2">Serial Number</th>
+          <th class="border px-1 py-2">Tag Number</th>
+          <th class="border px-1 py-2">Repair Date</th>
+          <th class="border px-1 py-2">Repair Cost</th>
+          <th class="border px-1 py-2">Repair Status</th>
+          <th class="border px-1 py-2">Repair Notes</th>
+  
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let repair of repairs" class="text-xs">
+          <td class="border px-1 py-2 text-center">{{ repair.repair_id }}</td>
+          
+          <td class="border px-1 py-1 text-center">{{ repair.branch_name }}</td>
+          <td class="border px-1 py-1 text-center ">{{ repair.group_name }}</td>
+          <td class="border px-1 py-1 text-center">{{ repair.desktop_name }}</td>
+          <td class="border px-1 py-1 text-center">{{ repair.serial_number }}</td>
+          <td class="border px-1 py-1 text-center">{{ repair.tag_name }}</td>
+          <td class="border px-1 py-1 text-center">{{ repair.repair_date | date}}</td>
+          <td class="border px-1 py-1 text-center">{{ repair.repair_cost }}</td>
+          <td class="border px-1 py-1 text-center">{{ repair.repair_status }}</td>
+          <td class="border px-1 py-2">{{ repair.repair_notes }}</td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal for Editing Asset -->
+  <div *ngIf="isEdit" class="fixed inset-0 flex items-center justify-center z-50">
+    <div class="modal-overlay absolute inset-0 bg-gray-900 opacity-50"></div>
+    <div class="modal-content relative bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
+      <h2 class="text-xl font-semibold mb-4">REPAIR ADD</h2>
+      <form [formGroup]="repairForm" (ngSubmit)="saveRepair()">
+
+        <div class="form-group">
+          <label for="asset_id">Repair ID</label>
+          <input id="repair_id" formControlName="repair_id" class="form-control" type="number">
+        </div>
+
+        <div class="form-group">
+          <label for="asset_id">Asset ID</label>
+          <input id="asset_id" formControlName="asset_id" class="form-control" type="number">
+        </div>
+        
+        <div class="form-group">
+          <label for="repair_date">Repair Date</label>
+          <input id="repair_date" formControlName="repair_date" class="form-control" type="date">
+        </div>
+        
+        <div class="form-group">
+          <label for="repair_cost">Repair Cost</label>
+          <input id="repair_cost" formControlName="repair_cost" class="form-control" type="text">
+        </div>
+        
+        <div class="form-group">
+          <label for="repair_status">Repair Status</label>
+          <select id="repair_status" formControlName="repair_status" class="form-control">
+            <option value="Completed">Completed</option>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="repair_notes">Repair Notes</label>
+          <textarea id="repair_notes" formControlName="repair_notes" class="form-control"></textarea>
+        </div>
+
+        <div class="mt-4">
+          <button type="submit" class="btn-submit mr-5">Repair</button>
+          <button type="button" (click)="closeModal()" class="btn-cancel">Cancel</button>
+        </div>
+  
+
+
+      </form>
+    </div>
+  </div>
+  
+  
+
+
+
+
+
+  

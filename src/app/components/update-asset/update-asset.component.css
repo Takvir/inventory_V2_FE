@@ -109,7 +109,10 @@
 
   /* No data message */
   .no-data {
-    margin-top: 20px;
+    position: absolute; /* Position the element absolutely */
+    top: 50%; /* Position 50% from the top */
+    left: 50%; /* Position 50% from the left */
+    transform: translate(-50%, -50%); /* Center the element */
     padding: 20px;
     background-color: #e2e2e2;
     border: 1px solid #ffccd5;
@@ -155,4 +158,17 @@
   .btn-cancel:hover {
     background-color: #e53935;
   }
+  
+  .loading-message {
+    position: absolute; /* Position the element absolutely */
+    top: 50%; /* Position 50% from the top */
+    left: 50%; /* Position 50% from the left */
+    transform: translate(-50%, -50%); /* Center the element */
+    text-align: center; /* Center the text */
+    font-size: 24px;
+    color: #025327;
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: Light background for better visibility */
+    padding: 10px 20px; /* Padding around the message */
+    border-radius: 8px; /* Rounded corners */
+      }
   

@@ -145,6 +145,7 @@ export class AssetBranchComponent implements OnInit {
   loadAssets(): void {
     const { branchId, groupId, subBranch } = this.assetForm.value;
     this.noDataFound = false;
+    this.loading = true;
 
     if (branchId && groupId && subBranch && subBranch !== 'Select Division') {
       this.assetService.getAssetsByBranchGroupAndSubBranch(branchId, groupId, subBranch).subscribe({

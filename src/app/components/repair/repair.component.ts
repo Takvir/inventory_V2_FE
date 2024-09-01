@@ -307,6 +307,7 @@ export class RepairComponent implements OnInit {
   loadAssets(): void {
     const { branch_id, group_id, sub_branch } = this.viewAssetsForm.value;
     this.noDataFound = false;
+    this.loading = true;
 
     if (branch_id && group_id && sub_branch && sub_branch !== 'Select Division') {
       this.tagService.getAssetsByBranchGroupAndSubBranch(branch_id, group_id, sub_branch).subscribe({

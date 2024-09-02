@@ -1,0 +1,20 @@
+
+  .pie-chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .pie-chart {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: conic-gradient(
+      #FF6384 0% 25%, /* Example slice */
+      #36A2EB 25% 50%, /* Example slice */
+      #FFCE56 50% 75%, /* Example slice */
+      #4BC0C0 75% 100% /* Example slice */
+    );
+  }
+

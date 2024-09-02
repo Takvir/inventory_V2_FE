@@ -36,6 +36,11 @@ import { OldEquipmentComponent } from './components/old-equipment/old-equipment.
 import { UpdateAssetComponent } from './components/update-asset/update-asset.component';
 import { RepairComponent } from './components/repair/repair.component';
 import { RepairListComponent } from './components/repair-list/repair-list.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+
+
+
+
 
 
 
@@ -62,6 +67,7 @@ import { RepairListComponent } from './components/repair-list/repair-list.compon
     UpdateAssetComponent,
     RepairComponent,
     RepairListComponent,
+    DashboardComponent,
     
   
 

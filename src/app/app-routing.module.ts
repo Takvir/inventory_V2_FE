@@ -17,6 +17,7 @@ import { OldEquipmentComponent } from './components/old-equipment/old-equipment.
 import { UpdateAssetComponent } from './components/update-asset/update-asset.component';
 import { RepairComponent } from './components/repair/repair.component';
 import { RepairListComponent } from './components/repair-list/repair-list.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'update-asset', component: UpdateAssetComponent, canActivate: [AuthGuard] },
   { path: 'repair', component: RepairComponent, canActivate: [AuthGuard] },
   { path: 'repair-list', component: RepairListComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   
 ];
 

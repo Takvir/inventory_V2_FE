@@ -6,7 +6,7 @@
       <thead>
         <tr class="text-sm">
           <th class="border px-1 py-2">Repair ID</th>
-          <th class="border px-1 py-2">Asset ID</th>
+      
           <th class="border px-1 py-2">Branch Name</th>
           <th class="border px-1 py-2">Group Name</th>
           <th class="border px-1 py-2">Asset Name</th>
@@ -22,7 +22,7 @@
       <tbody>
         <tr *ngFor="let repair of repairs" class="text-xs">
           <td class="border px-1 py-2 text-center">{{ repair.repair_id }}</td>
-          <td class="border px-1 py-1 text-center">{{ repair.asset_id }}</td>
+          
           <td class="border px-1 py-1 text-center">{{ repair.branch_name }}</td>
           <td class="border px-1 py-1 text-center ">{{ repair.group_name }}</td>
           <td class="border px-1 py-1 text-center">{{ repair.desktop_name }}</td>
@@ -30,7 +30,15 @@
           <td class="border px-1 py-1 text-center">{{ repair.tag_name }}</td>
           <td class="border px-1 py-1 text-center">{{ repair.repair_date | date}}</td>
           <td class="border px-1 py-1 text-center">{{ repair.repair_cost }}</td>
-          <td class="border px-1 py-1 text-center">{{ repair.repair_status }}</td>
+          <td class="border px-1 py-1 text-center"
+    [ngClass]="{
+      'bg-green-200 text-black': repair.repair_status === 'Completed',
+      'bg-red-200 text-black': repair.repair_status === 'Pending',
+      'bg-yellow-200 text-black': repair.repair_status === 'In Progress'
+    }">
+  {{ repair.repair_status }}
+</td>
+
           <td class="border px-1 py-2">{{ repair.repair_notes }}</td>
           <td class="border px-4 py-1">
             <button (click)="openEditModal(repair)" class="bg-green-900 text-white px-3 rounded">Edit</button>

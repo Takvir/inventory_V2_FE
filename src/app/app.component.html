@@ -18,6 +18,14 @@
       <ul class="text-base">
         <!-- Conditional Links Based on User Type -->
 
+        <!-- <li class="border-b border-gray-700 text-sm" >
+          <a routerLink="/dashboard" routerLinkActive="font-bold bg-cyan-700" class="block py-3 px-4 hover:bg-cyan-700 flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 6h18M3 14h18m-8 4H5v-5h10v5zM4 5V4a1 1 0 011-1h14a1 1 0 011 1v1M7 7v2M7 11v2m0-2v2m3-6v6m-3-6v6m6-6v6" />
+            </svg>
+            Dashboard
+          </a>
+        </li> -->
 
         <li class="border-b border-gray-700 text-sm" *ngIf="userType !== 'branch'">
           <a routerLink="/branch-list" routerLinkActive="font-bold bg-cyan-700" class="block py-3 px-4 hover:bg-cyan-700 flex items-center">

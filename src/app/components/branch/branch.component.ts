@@ -42,9 +42,9 @@ export class BranchComponent implements OnInit {
 
   loadBranches(): void {
     this.branchService.getBranches().subscribe(data => {
-      this.branches = data;
+      this.branches = data.filter(branch => !(branch.branch_name === 'Stock House' && branch.branch_id === 2000));
       this.totalBranches = this.branches.length;
-      console.log(data);
+      console.log(this.branches); // You can check the filtered data here
     });
   }
 

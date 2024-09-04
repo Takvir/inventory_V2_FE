@@ -44,79 +44,67 @@
       Please Select Branch , Asset Group for Loading Data ... 
     </div>
   
-    <div *ngIf="assets.length > 0">
-  
-      <table class="asset-table">
-        <thead>
-          <tr>
-            <!-- <th>ID</th> -->
-            <th>S. No.</th>
-            <th>Branch</th>
-            <th>Division</th>
-            <th>Asset Group</th>
-            <th>Device Name</th>
-            <th>Configuration</th>
-            <th>Serial Number</th>
-            <th>Tag Name</th>
-            <th>Warranty (End of Support)</th>
-            <th>Price</th>
-            <th>Purchase Date</th>
-            <th>Status</th>
-            <th>Asset Value</th>
-            <th>Operating System</th>
-            <th>RAM</th>
-            <th>Storage</th>
-            <th>Work Order</th>
-            <th>Challan No.</th>
-            <!-- <th>Asset Get By</th> -->
-  
-  
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let asset of assets let i = index">
-            <!-- <td>{{ asset.asset_id }}</td> -->
-            <td>{{i+1}}</td>
-            <td>{{ asset.branch_name }}</td>
-            <td>{{ asset.sub_branch }}</td>
-            <td>{{ asset.group_name }}</td>
-            <td>{{ asset.desktop_name }}</td>
-            <td>{{ asset.configuration }}</td>
-            <td>{{ asset.serial_number }}</td>
-            <td [ngClass]="{'text-red-500 font-semibold font-sans': isFAD(asset.tag_name)}">{{ asset.tag_name }}</td>
-  
-            <td [ngClass]="{ 'text-blue-500 font-semibold font-sans': asset.warranty === 'Routed To CSD' }">{{ asset.warranty }}</td>
-            <td [ngClass]="{'text-blue-500 font-semibold font-sans': isValueNaN(asset.price)}">{{ asset.price }}</td>
-            <td [ngClass]="{'text-blue-500 font-semibold font-sans': isRoutedToCSD(asset.purchase_date)}">
-              {{ asset.purchase_date }}
-            </td>
-            <td>{{ asset.status }}</td>
-            <td>{{ calculateAssetValue(asset.purchase_date, asset.price) }}</td>
-            <td>{{ asset.OS }} </td>
-            <td>{{ asset.RAM }} </td>
-            <td>{{ asset.Storage }} </td>
-            <td [ngClass]="{ 'text-blue-500': asset.work_order === 'Routed To CSD' }">{{ asset.work_order }}</td>
-            <td [ngClass]="{ 'routed-to-csd': asset.challan_no === 'Routed To CSD' }">{{ asset.challan_no }}</td>
-
-
-
-            
-            
-            
-  
-  
-            <td>
-              <button (click)="editAsset(asset.asset_id)" class="bg-green-800 py-0 px-2 rounded-md text-white">Update</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="table-container">
+      <div *ngIf="assets.length > 0">
+        <table class="asset-table">
+          <thead>
+            <tr>
+              <th>S. No.</th>
+              <th class="text-center">Branch</th>
+              <th>Division</th>
+              <th>Asset Group</th>
+              <th>Device Name</th>
+              <th>Configuration</th>
+              <th>Serial Number</th>
+              <th>Tag Name</th>
+              <th>Warranty (End of Support)</th>
+              <th>Purchase Date</th>
+              <th>Status</th>
+              <th>Operating System</th>
+              <th>RAM</th>
+              <th>Storage</th>
+              <th>Work Order</th>
+              <th>Challan No.</th>
+              <th>Price</th>
+              <th>Asset Value</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let asset of assets; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ asset.branch_name }}</td>
+              <td>{{ asset.sub_branch }}</td>
+              <td>{{ asset.group_name }}</td>
+              <td>{{ asset.desktop_name }}</td>
+              <td>{{ asset.configuration }}</td>
+              <td>{{ asset.serial_number }}</td>
+              <td [ngClass]="{ 'text-red-500 font-semibold font-sans': isFAD(asset.tag_name) }">{{ asset.tag_name }}</td>
+              <td [ngClass]="{ 'text-blue-500 font-semibold font-sans': asset.warranty === 'Routed To CSD' }">{{ asset.warranty }}</td>
+              <td [ngClass]="{ 'text-blue-500 font-semibold font-sans': isRoutedToCSD(asset.purchase_date) }">
+                {{ asset.purchase_date }}
+              </td>
+              <td>{{ asset.status }}</td>
+              <td>{{ asset.OS }}</td>
+              <td>{{ asset.RAM }}</td>
+              <td>{{ asset.Storage }}</td>
+              <td [ngClass]="{ 'text-blue-500': asset.work_order === 'Routed To CSD' }">{{ asset.work_order }}</td>
+              <td [ngClass]="{ 'routed-to-csd': asset.challan_no === 'Routed To CSD' }">{{ asset.challan_no }}</td>
+              <td [ngClass]="{ 'text-blue-500 font-semibold font-sans': isValueNaN(asset.price) }">{{ asset.price }}</td>
+              <td>{{ calculateAssetValue(asset.purchase_date, asset.price) }}</td>
+              <td>
+                <button (click)="editAsset(asset.asset_id)" class="bg-green-800 py-0 px-2 rounded-md text-white">Update</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+      <div *ngIf="noDataFound" class="no-data">
+        No Data Found
+      </div>
     </div>
-  
-    <div *ngIf="noDataFound" class="no-data">
-      No Data Found
-    </div>
+    
   </div>
   
   <!-- Modal for Editing Asset -->

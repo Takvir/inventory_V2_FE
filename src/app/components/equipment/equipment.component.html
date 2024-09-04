@@ -6,7 +6,7 @@
       <h2 class="section-heading text-center text-blue-700 inline-block border-b-2 border-gray-300">New Asset (Branch Entry)</h2>
       <div class="form-row">
         <div class="form-group">
-          <label for="branch_id">Branch:</label>
+          <label for="branch_id">Stock House:</label>
           <select formControlName="branch_id" id="branch_id" class="form-control" (change)="onBranchChange($event)" required>
             <option *ngFor="let branch of branches" [value]="branch.branch_id">{{ branch.branch_name }}</option>
           </select>

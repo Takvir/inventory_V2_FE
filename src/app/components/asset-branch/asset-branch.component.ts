@@ -220,20 +220,14 @@ export class AssetBranchComponent implements OnInit {
   calculateAssetValue(purchaseDate: Date, price: number): number {
     const currentDate = new Date();
     const purchaseDateObj = new Date(purchaseDate);
-    const yearsSincePurchase = (currentDate.getTime() - purchaseDateObj.getTime()) / (1000 * 3600 * 24 * 365);
-
-    if (yearsSincePurchase > 5) {
+    const daysSincePurchase = (currentDate.getTime() - purchaseDateObj.getTime()) / (1000 * 3600 * 24);
+    const totalDays = 5 * 365; // Total days for 5 years
+  
+    if (daysSincePurchase >= totalDays) {
       return 0;
-    } else if (yearsSincePurchase > 4) {
-      return price * 0.30; // 70% less
-    } else if (yearsSincePurchase > 3) {
-      return price * 0.50; // 50% less
-    } else if (yearsSincePurchase > 2) {
-      return price * 0.70; // 30% less
-    } else if (yearsSincePurchase > 1) {
-      return price * 0.80; // 20% less
     } else {
-      return price * 0.90; // 10% less
+      const depreciationRate = daysSincePurchase / totalDays;
+      return Math.ceil(price * (1 - depreciationRate));
     }
   }
 }

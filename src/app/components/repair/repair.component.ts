@@ -208,6 +208,8 @@ export class RepairComponent implements OnInit {
           console.log('Repair created successfully:', response);
           this.loadRepairs();
           this.clearForm();
+          window.confirm('Asset updated successfully!');
+          // this.closeModal();
         },
         error: (error) => {
           console.error('Error creating repair:', error);

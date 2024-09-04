@@ -66,41 +66,41 @@
     transition: none; /* Remove transition effect for disabled state */
   }
   
+  .table-container {
+    max-height: 500px; /* Adjust height as needed */
+    overflow-y: auto; /* Vertical scroll */
+    overflow-x: auto; /* Horizontal scroll */
+    margin-top: 20px;
+    border: 1px solid #ddd;
+  }
   
-.asset-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-
+  /* Keep your existing table styles */
+  .asset-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
   
-}
-
-/* Table headers and cells */
-.asset-table th, .asset-table td {
-  border: 1px dotted #1a0f0f;
-  padding: 6px; /* Adjusted padding */
-  text-align: left;
-  font-size: 11px; /* Smaller text size */
+  /* Table headers and cells */
+  .asset-table th, .asset-table td {
+    border: 1px dotted #1a0f0f;
+    padding: 6px;
+    text-align: center;
+    font-size: 11px;
+  }
   
-}
-
-/* Table header styling */
-.asset-table th {
-  background-color: #ddffc1b2;
-  color: #333;
-  font-size: 12px; /* Smaller header text size */
-  font-weight: bold;
-}
-
-/* Zebra striping for rows */
-/* .asset-table tr:nth-child(even) {
-  background-color: #f9f9f9;
-} */
-
-/* Hover effect for rows */
-.asset-table tr:hover {
-  background-color: #ddd;
-}
+  /* Table header styling */
+  .asset-table th {
+    background-color: #c0f1c7b2;
+    color: #333;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  /* Hover effect for rows */
+  .asset-table tr:hover {
+    background-color: #ddd;
+  }
+  
 
 .routed-to-csd {
   color: rgb(73, 120, 247); /* Change this to your desired color */

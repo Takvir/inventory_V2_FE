@@ -37,6 +37,7 @@ import { UpdateAssetComponent } from './components/update-asset/update-asset.com
 import { RepairComponent } from './components/repair/repair.component';
 import { RepairListComponent } from './components/repair-list/repair-list.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CsdTagComponent } from './components/csd-tag/csd-tag.component';
 
 
 
@@ -68,6 +69,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     RepairComponent,
     RepairListComponent,
     DashboardComponent,
+    CsdTagComponent,
     
   
 

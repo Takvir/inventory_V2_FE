@@ -228,9 +228,25 @@ export class OldEquipmentComponent implements OnInit {
   resetForm(): void {
     this.isEdit = false;
     this.editAssetId = null;
-    this.assetForm.reset();
+  
+    // Reset only the specified form controls
+    this.assetForm.reset({
+      branch_id: '',
+      branch_name: '',
+      group_id: '',
+      desktop_name: '',
+      configuration: '',
+      tag_name: '',
+      status: '',
+      asset_get_by: '',
+      serial_number: '',
+      sub_branch: '',
+      OS: '',
+      RAM: '',
+      Storage: ''
+    });
   }
-
+  
   onBranchChange(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
     const selectedBranchId = parseInt(selectElement.value, 10);

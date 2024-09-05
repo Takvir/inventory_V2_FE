@@ -90,6 +90,7 @@ export class RepairComponent implements OnInit {
   isEditMode: boolean = false;
   noDataFound: boolean = false;
   loading: boolean = false;
+  totalRepair: number = 0;
 
   constructor(
     private tagService: TagAssetService,
@@ -153,6 +154,8 @@ export class RepairComponent implements OnInit {
         next: (data: Repair[]) => {
           // Assuming you have a branch_id field in your Repair model that you can filter by
           this.repairs = data.filter(repair => repair.branch_id === branchIdNum);
+
+          this.totalRepair = this.repairs.length;
           
           // Alternatively, if the branch_id is related to the assets in repairs, you can do something like:
           // this.repairs = data.filter(repair => this.assets.some(asset => asset.asset_id === repair.asset_id && asset.branch_id === branchIdNum));
@@ -208,7 +211,7 @@ export class RepairComponent implements OnInit {
           console.log('Repair created successfully:', response);
           this.loadRepairs();
           this.clearForm();
-          window.confirm('Asset updated successfully!');
+          window.confirm('Repair Created Successfully!');
           // this.closeModal();
         },
         error: (error) => {

@@ -19,7 +19,7 @@
   <table class="min-w-full divide-y divide-gray-200">
     <thead class="bg-gray-50">
       <tr>
-        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Branch Name</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employee No.</th>
         <!-- Dynamically create columns for each group name -->
         <th *ngFor="let group of groups" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -54,6 +54,6 @@
 
   <!-- Download Button -->
   <div class="text-center mt-4">
-    <button (click)="downloadTableData()" class="bg-blue-500 text-white px-4 py-2 rounded">Download</button>
+    <button (click)="downloadTableData()" class="bg-cyan-600 text-white px-4 py-2 rounded">Download</button>
   </div>
 </div>

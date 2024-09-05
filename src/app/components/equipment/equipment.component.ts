@@ -210,7 +210,6 @@ export class EquipmentComponent implements OnInit {
         ];
       } else {
         this.subBranchOptions = ['N/A'];
-
       }
 
       this.assetForm.patchValue({

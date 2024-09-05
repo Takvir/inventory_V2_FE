@@ -48,72 +48,71 @@
   
   
     <div *ngIf="assets.length > 0">
-  
-      <table class="asset-table">
-        <thead>
-          <tr>
-            <!-- <th>ID</th> -->
-            <th>S. No.</th>
-            <th>Branch</th>
-            <th>Division</th>
-            <th>Asset Group</th>
-            <th>Device Name</th>
-            <th>Configuration</th>
-            <th>Serial Number</th>
+
+      <div class="table-container">
+        <table class="asset-table">
+          <thead>
+            <tr>
+              <!-- <th>ID</th> -->
+              <th>S. No.</th>
+              <th>Location</th>
+              <th>Department/Division</th>
+              <th>Asset Group</th>
+              <th>Device Name</th>
+              <th>Configuration</th>
+              <th>Serial Number</th>
+             
+              
+              <th>Price</th>
+              
+              <th>Status</th>
+              <th>Asset Value</th>
+            
+    
+              <th>Tag Name</th>
+              <!-- <th>Work Order</th>
+              <th>Challan No.</th> -->
+              <!-- <th>Asset Get By</th> -->
+    
+    
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let asset of assets let i = index">
+              <!-- <td>{{ asset.asset_id }}</td> -->
+              <td>{{i+1}}</td>
+              <td >{{ asset.branch_name }}</td>
+              <td>{{ asset.sub_branch }}</td>
+              <td style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">{{ asset.group_name }}</td>
+              <td>{{ asset.desktop_name }}</td>
+              <td>{{ asset.configuration }}</td>
+              <td>{{ asset.serial_number }}</td>
+             
+    
+              
+              <td [ngClass]="{'text-blue-500 font-semibold font-sans': isValueNaN(asset.price)}">{{ asset.price }}</td>
+    
+              
+              <td>{{ asset.status }}</td>
+              <td>{{ calculateAssetValue(asset.purchase_date, asset.price) }}</td>
+    
            
-            
-            <th>Price</th>
-            
-            <th>Status</th>
-            <th>Asset Value</th>
-          
-            <th>Purchase Date</th>
-            <th>Warranty</th>
-            <th>Tag Name</th>
-            <!-- <th>Work Order</th>
-            <th>Challan No.</th> -->
-            <!-- <th>Asset Get By</th> -->
+              <td [ngClass]="{'text-red-500 font-semibold font-sans': isFAD(asset.tag_name)}" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">{{ asset.tag_name }}</td>
+              <!-- <td>{{ asset.work_order }}</td>
+              <td>{{ asset.challan_no }}</td> -->
+              <!-- <td>{{ asset.asset_get_by }}</td> -->
+    
+    
+              <td>
+                <button (click)="openRepairModal(asset)" class="bg-green-800 py-0 px-2 rounded-md text-white">Repair</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
   
-  
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let asset of assets let i = index">
-            <!-- <td>{{ asset.asset_id }}</td> -->
-            <td>{{i+1}}</td>
-            <td >{{ asset.branch_name }}</td>
-            <td>{{ asset.sub_branch }}</td>
-            <td style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">{{ asset.group_name }}</td>
-            <td>{{ asset.desktop_name }}</td>
-            <td>{{ asset.configuration }}</td>
-            <td>{{ asset.serial_number }}</td>
-           
-  
-            
-            <td [ngClass]="{'text-blue-500 font-semibold font-sans': isValueNaN(asset.price)}">{{ asset.price }}</td>
-  
-            
-            <td>{{ asset.status }}</td>
-            <td>{{ calculateAssetValue(asset.purchase_date, asset.price) }}</td>
-  
-            <td [ngClass]="{'text-blue-500 font-semibold font-sans': isRoutedToCSD(asset.purchase_date)}">
-              {{ asset.purchase_date }}
-            </td>
-            
-            <td [ngClass]="{ 'text-blue-500 font-semibold font-sans': asset.warranty === 'Routed To CSD' }">{{ asset.warranty }}</td>
-            <td [ngClass]="{'text-red-500 font-semibold font-sans': isFAD(asset.tag_name)}" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">{{ asset.tag_name }}</td>
-            <!-- <td>{{ asset.work_order }}</td>
-            <td>{{ asset.challan_no }}</td> -->
-            <!-- <td>{{ asset.asset_get_by }}</td> -->
-  
-  
-            <td>
-              <button (click)="openRepairModal(asset)" class="bg-green-800 py-0 px-2 rounded-md text-white">Repair</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+
     </div>
   
     <div *ngIf="noDataFound" class="no-data">
@@ -121,45 +120,57 @@
     </div>
   </div>
   
-  <div  *ngIf="assets.length > 0" class="mt-5">
+  <div  *ngIf="assets.length > 0" class="mt-3">
    
-    <h3>Repair List</h3>
-    <table class="min-w-full bg-white border border-gray-200">
-     
-      <thead>
-        <tr class="text-sm">
-          <th class="border px-1 py-2">Repair ID</th>
-        
-          <th class="border px-1 py-2">Branch Name</th>
-          <th class="border px-1 py-2">Group Name</th>
-          <th class="border px-1 py-2">Asset Name</th>
-          <th class="border px-1 py-2">Serial Number</th>
-          <th class="border px-1 py-2">Tag Number</th>
-          <th class="border px-1 py-2">Repair Date</th>
-          <th class="border px-1 py-2">Repair Cost</th>
-          <th class="border px-1 py-2">Repair Status</th>
-          <th class="border px-1 py-2">Repair Notes</th>
-  
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let repair of repairs" class="text-xs">
-          <td class="border px-1 py-2 text-center">{{ repair.repair_id }}</td>
-          
-          <td class="border px-1 py-1 text-center">{{ repair.branch_name }}</td>
-          <td class="border px-1 py-1 text-center ">{{ repair.group_name }}</td>
-          <td class="border px-1 py-1 text-center">{{ repair.desktop_name }}</td>
-          <td class="border px-1 py-1 text-center">{{ repair.serial_number }}</td>
-          <td class="border px-1 py-1 text-center">{{ repair.tag_name }}</td>
-          <td class="border px-1 py-1 text-center">{{ repair.repair_date | date}}</td>
-          <td class="border px-1 py-1 text-center">{{ repair.repair_cost }}</td>
-          <td class="border px-1 py-1 text-center">{{ repair.repair_status }}</td>
-          <td class="border px-1 py-2">{{ repair.repair_notes }}</td>
+    <div class="text-center mt-1 mb-1">
+      <h1 class="text-xl font-bold mb-1 inline-block border-b-2 border-gray-300">Repair List</h1>
+    </div>
 
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <h3 class="text-md font-medium mb-1">Total Repair List: {{ totalRepair }}</h3>
+    <div class="reapiar-table-container">
+      
+        <table class="  border border-gray-200 repair-asset-table">
+          <thead>
+            <tr class="text-sm">
+              <th class="border px-1 py-2">Repair ID</th>
+              <th class="border px-1 py-2">Location</th>
+              <th class="border px-1 py-2">Group Name</th>
+              <th class="border px-1 py-2">Asset Name</th>
+              <th class="border px-1 py-2">Serial Number</th>
+              <th class="border px-1 py-2">Tag Number</th>
+              <th class="border px-1 py-2">Repair Date</th>
+              <th class="border px-1 py-2">Repair Cost</th>
+              <th class="border px-1 py-2">Repair Status</th>
+              <th class="border px-1 py-2">Repair Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let repair of repairs" class="text-xs">
+              <td class="border px-1 py-2 text-center">{{ repair.repair_id }}</td>
+              <td class="border px-1 py-1 text-center">{{ repair.branch_name }}</td>
+              <td class="border px-1 py-1 text-center">{{ repair.group_name }}</td>
+              <td class="border px-1 py-1 text-center">{{ repair.desktop_name }}</td>
+              <td class="border px-1 py-1 text-center">{{ repair.serial_number }}</td>
+              <td class="border px-1 py-1 text-center">{{ repair.tag_name }}</td>
+              <td class="border px-1 py-1 text-center">{{ repair.repair_date | date }}</td>
+              <td class="border px-1 py-1 text-center">{{ repair.repair_cost }}</td>
+              <td class="border px-1 py-1 text-center"
+                  [ngClass]="{
+                    'bg-green-200 text-black': repair.repair_status === 'Completed',
+                    'bg-red-200 text-black': repair.repair_status === 'Pending',
+                    'bg-yellow-200 text-black': repair.repair_status === 'In Progress'
+                  }">
+                {{ repair.repair_status }}
+              </td>
+              <td class="border px-1 py-2">{{ repair.repair_notes }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+
+  
 
   <!-- Modal for Editing Asset -->
   <div *ngIf="isEdit" class="fixed inset-0 flex items-center justify-center z-50">

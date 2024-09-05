@@ -54,8 +54,8 @@
         <tr>
           <!-- <th>ID</th> -->
           <th>S. No.</th>
-          <th>Branch</th>
-          <th>Division</th>
+          <th>Location</th>
+          <th>Department/Division</th>
           <th>Asset Group</th>
           <th>Device Name</th>
           <th>Configuration</th>
@@ -136,7 +136,7 @@
       </div>
       <div class="form-row">
         <div class="form-group mb-4 w-full sm:w-1/2 px-2">
-          <label for="branch" class="block text-gray-700">Branch:</label>
+          <label for="branch" class="block text-gray-700">Location:</label>
           <select id="branch" formControlName="branch_id" class="form-control mt-1 w-full" (change)="onBranchChange($event)" [attr.disabled]="isBranchDisabled ? true : null">
             <option *ngFor="let branch of branches" [value]="branch.branch_id">{{ branch.branch_name }}</option>
           </select>

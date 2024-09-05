@@ -1,0 +1,41 @@
+.table-container {
+    max-height: 550px; /* Adjust height as needed */
+    overflow-y: auto;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .asset-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0; /* Removed extra margin-top */
+  }
+
+
+  
+  
+  /* Table headers and cells */
+  .asset-table th, .asset-table td {
+    border: 1px dotted #1a0f0f;
+    padding: 6px;
+    text-align: left;
+    font-size: 11px;
+  }
+  
+  /* Table header styling */
+  .asset-table th {
+    background-color: #f1eca4;
+    color: #333;
+    font-size: 12px;
+    font-weight: bold;
+    position: sticky;
+    top: 0; /* Keep the header fixed at the top */
+    z-index: 1;
+  }
+  
+  /* Hover effect for rows */
+  .asset-table tr:hover {
+    background-color: #ddd;
+  }
+  

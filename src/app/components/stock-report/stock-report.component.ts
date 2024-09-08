@@ -71,7 +71,7 @@ export class StockReportComponent implements OnInit {
   getTotalDevices(groupName: string): number {
     const groupStatus = this.groupStatusCounts[groupName];
     const stockInHand = this.groups.find(group => group.group_name === groupName)?.stock_in_hand || 0;
-    return (groupStatus?.['Active'] || 0) + (groupStatus?.['InActive'] || 0) + (groupStatus?.['Faulty'] || 0) + stockInHand;
+    return (groupStatus?.['Active'] || 0) + (groupStatus?.['Faulty'] || 0) + stockInHand;
   }
 
   getStockInHand(groupName: string): number {

@@ -15,7 +15,7 @@
     flex-direction: column;
     gap: 16px;
     margin-left: 140px;
-
+  
   }
   
   .form-row {
@@ -28,7 +28,7 @@
     flex: 1;
     
   }
-
+  
   
   .form-group-inline {
     flex: 1 1 0;
@@ -74,6 +74,7 @@
     border: 1px solid #ddd;
     
   }
+  
   /* Keep your existing table styles */
   .asset-table {
     width: 100%;
@@ -101,12 +102,12 @@
     background-color: #ddd;
   }
   
-
-.routed-to-csd {
+  
+  .routed-to-csd {
   color: rgb(73, 120, 247); /* Change this to your desired color */
-}
-
-
+  }
+  
+  
   /* No data message */
   .no-data {
     position: absolute; /* Position the element absolutely */

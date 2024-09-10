@@ -39,6 +39,9 @@ export class LoginComponent implements OnInit {
           navigateTo = '/old-entry';
         } else if (userType === 'branch') {
           navigateTo = '/old-entry';
+        }
+        else if (userType === 'fad') {
+          navigateTo = '/old-entry';
         } else {
           navigateTo = '/branch-list'; // Fallback route
         }

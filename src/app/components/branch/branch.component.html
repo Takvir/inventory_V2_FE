@@ -3,8 +3,9 @@
     <h1 class="text-xl font-bold mb-2 inline-block border-b-2 border-gray-300">Branch List</h1>
   </div>
   <button
-    (click)="openAddBranchDialog()"
-    class="bg-green-900 text-white px-10 py-3 rounded-md shadow-md hover:bg-green-600 text-base mb-4"
+    (click)="openAddBranchDialog()"   [disabled]="userType == 'fad'"
+    class="bg-green-900 text-white px-10 py-3 rounded-md shadow-md  text-base mb-4 "
+    [ngClass]="{ 'btn-disabled': userType == 'fad' }"
   >
     Add Branch
   </button>
@@ -79,6 +80,8 @@
               <button
                 (click)="openEditBranchDialog(branch)"
                 class="bg-green-500 text-white px-2 rounded-md shadow-md hover:bg-yellow-600"
+                [disabled]="userType == 'fad'"
+                [ngClass]="{ 'btn-disabled': userType == 'fad' }"
               >
                 Edit
               </button>

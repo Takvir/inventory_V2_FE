@@ -53,16 +53,9 @@
             UPDATE ASSET
           </a>
         </li>
-        
 
-        <li class="border-b border-gray-700 text-sm">
-          <a routerLink="/branch-asset" routerLinkActive="font-bold bg-cyan-700" class="block py-3 px-4 hover:bg-cyan-700 flex items-center">
-            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M3 6h18M3 18h18M7 12v6m6-6v6m6-6v6" />
-            </svg>
-            BRANCH ASSET
-          </a>
-        </li>
+
+
         <li class="border-b border-gray-700 text-sm" *ngIf="userType !== 'branch'">
           <a routerLink="/group-add" routerLinkActive="font-bold bg-cyan-700" class="block py-3 px-4 hover:bg-cyan-700 flex items-center">
             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -71,7 +64,19 @@
             ASSET GROUP
           </a>
         </li>
-        <li class="border-b border-gray-700 text-sm">
+
+        <li class="border-b border-gray-700 text-sm" >
+          <a routerLink="/branch-all-asset" routerLinkActive="font-bold bg-cyan-700" class="block py-3 px-4 hover:bg-cyan-700 flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l6-6 1 1-6 6-1-1zM4 19v-1a2 2 0 012-2h1.586a2 2 0 001.414-.586L17 6l1 1-10 10a2 2 0 00-.586 1.414V17a2 2 0 01-2 2H4z" />
+            </svg>
+            BRANCH ASSET
+          </a>
+        </li>
+        
+
+        <li class="border-b border-gray-700 text-sm" *ngIf="userType !== 'branch'">
           <a routerLink="/tag-entry" routerLinkActive="font-bold bg-cyan-700" class="block py-3 px-4 hover:bg-cyan-700 flex items-center">
             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5h7M14 10h7M14 15h7M14 20h7M5 20h7m-7-5h7M5 10h7M5 5h7m0 0V4a1 1 0 00-1-1H4a1 1 0 00-1 1v1" />
@@ -79,7 +84,7 @@
             FAD TAG
           </a>
         </li>
-        <li class="border-b border-gray-700 text-sm">
+        <li class="border-b border-gray-700 text-sm" *ngIf="userType !== 'branch'">
           <a routerLink="/csd-tag" routerLinkActive="font-bold bg-cyan-700" class="block py-3 px-4 hover:bg-cyan-700 flex items-center">
             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5h7M14 10h7M14 15h7M14 20h7M5 20h7m-7-5h7M5 10h7M5 5h7m0 0V4a1 1 0 00-1-1H4a1 1 0 00-1 1v1" />
@@ -87,7 +92,7 @@
             CSD TAG
           </a>
         </li>
-        <li class="border-b border-gray-700 text-sm">
+        <!-- <li class="border-b border-gray-700 text-sm">
           <a routerLink="/equipment" routerLinkActive="font-bold bg-cyan-700" class="block py-3 px-4 hover:bg-cyan-700 flex items-center">
             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9.25L12 4l9 5.25v7.5c0 1.2-.8 2-2 2H5c-1.2 0-2-.8-2-2v-7.5z" />
@@ -96,24 +101,31 @@
             STOCK ADD
           </a>
         </li>
-        
-        
-        <!-- <li class="border-b border-gray-700 text-sm">
-          <a routerLink="/repair" routerLinkActive="font-bold bg-cyan-700" class="block py-3 px-4 hover:bg-cyan-700 flex items-center">
-            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5h7M14 10h7M14 15h7M14 20h7M5 20h7m-7-5h7M5 10h7M5 5h7m0 0V4a1 1 0 00-1-1H4a1 1 0 00-1 1v1" />
-            </svg>
-            REPAIR
-          </a>
-        </li>
+
         <li class="border-b border-gray-700 text-sm">
-          <a routerLink="/repair-list" routerLinkActive="font-bold bg-cyan-700" class="block py-3 px-4 hover:bg-cyan-700 flex items-center">
+          <a routerLink="/branch-asset" routerLinkActive="font-bold bg-cyan-700" class="block py-3 px-4 hover:bg-cyan-700 flex items-center">
             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5h7M14 10h7M14 15h7M14 20h7M5 20h7m-7-5h7M5 10h7M5 5h7m0 0V4a1 1 0 00-1-1H4a1 1 0 00-1 1v1" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M3 6h18M3 18h18M7 12v6m6-6v6m6-6v6" />
             </svg>
-            REPAIR LIST
+            Transfer Asset
           </a>
         </li> -->
+
+        <li class="relative text-sm" *ngIf="userType !== 'branch'">
+          <button (click)="toggleStock()" class="block py-4 px-2 w-full text-center hover:bg-cyan-700 focus:outline-none flex items-center justify-between">
+            <span class="ml-5">STOCK HOUSE</span>
+            <svg [ngClass]="{'rotate-180': stockOpen}" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <ul [ngClass]="{'hidden': !stockOpen}" class="bg-cyan-800 border border-gray-700 mt-1 text-sm">
+            <li><a routerLink="/equipment" routerLinkActive="font-bold bg-cyan-700" class="block py-3 px-4 hover:bg-cyan-700">STOCK ADD</a></li>
+            <li><a routerLink="/branch-asset" routerLinkActive="font-bold bg-cyan-700" class="block py-3 px-4 hover:bg-cyan-700">ASSET TRANSFER</a></li>
+
+          </ul>
+        </li>
+        
+    
 
         <li class="relative text-sm" >
           <button (click)="toggleRepair()" class="block py-4 px-2 w-full text-center hover:bg-cyan-700 focus:outline-none flex items-center justify-between">

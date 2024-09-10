@@ -1,9 +1,7 @@
-/* asset-branch.component.css */
-
-/* Full-width form container */
+/* asset-manager.component.css */
 .form-container {
-  width: 100%;
-  max-width: 1200px; /* Adjust as needed */
+  width: 98%;
+  /* Adjust as needed */
   margin: 0 auto;
   padding: 20px;
   background-color: #f9f9f9;
@@ -12,44 +10,37 @@
   margin-top: 20px;
 }
 
-/* Flex layout for the form */
 .asset-form {
   display: flex;
-  flex-wrap: wrap; /* Wrap form elements to new line if needed */
-  gap: 16px; /* Space between form elements */
+  flex-direction: column;
+  gap: 16px;
+  margin-left: 140px;
+
 }
 
-/* Full-width form groups */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
 .form-group {
   flex: 1;
-  min-width: 200px;
+  
 }
 
-/* Form labels */
-.form-group label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: #333;
+
+.form-group-inline {
+  flex: 1 1 0;
 }
 
-/* Form controls */
 .form-control {
-  width: 100%; /* Adjusted width to full container */
-  padding: 3px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 14px;
+  padding: 3px;
+  width: 100%;
 }
 
-/* Focus state for form controls */
-.form-control:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
-}
-
-/* Submit button */
 .submit-button {
   padding: 4px 12px; /* Adjusted padding for smaller height */
   border: none;
@@ -59,7 +50,7 @@
   font-size: 14px; /* Adjusted font size to match form controls */
   cursor: pointer;
   transition: background-color 0.3s ease;
-  align-self: flex-start;/* Adjust alignment if needed */
+  align-self: flex-start; /* Adjust alignment if needed */
 }
 
 /* Submit button hover effect */
@@ -75,32 +66,34 @@
   transition: none; /* Remove transition effect for disabled state */
 }
 
-/* Table styling */
+.table-container {
+  max-height: 500px; /* Adjust height as needed */
+  overflow-y: auto; /* Vertical scroll */
+  overflow-x: auto; /* Horizontal scroll */
+  margin-top: 20px;
+  border: 1px solid #ddd;
+}
+
+/* Keep your existing table styles */
 .asset-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
 }
 
 /* Table headers and cells */
 .asset-table th, .asset-table td {
-  border: 1px solid #ddd;
-  padding: 6px; /* Adjusted padding */
-  text-align: left;
-  font-size: 12px; /* Smaller text size */
+  border: 1px dotted #1a0f0f;
+  padding: 6px;
+  text-align: center;
+  font-size: 11px;
 }
 
 /* Table header styling */
 .asset-table th {
-  background-color: #f4f4f4;
+  background-color: #c0f1c7b2;
   color: #333;
-  font-size: 14px; /* Smaller header text size */
+  font-size: 12px;
   font-weight: bold;
-}
-
-/* Zebra striping for rows */
-.asset-table tr:nth-child(even) {
-  background-color: #f9f9f9;
 }
 
 /* Hover effect for rows */
@@ -108,11 +101,20 @@
   background-color: #ddd;
 }
 
+
+.routed-to-csd {
+color: rgb(73, 120, 247); /* Change this to your desired color */
+}
+
+
 /* No data message */
 .no-data {
-  margin-top: 20px;
+  position: absolute; /* Position the element absolutely */
+  top: 50%; /* Position 50% from the top */
+  left: 50%; /* Position 50% from the left */
+  transform: translate(-50%, -50%); /* Center the element */
   padding: 20px;
-  background-color: #baffc9;
+  background-color: #e2e2e2;
   border: 1px solid #ffccd5;
   border-radius: 4px;
   text-align: center;
@@ -120,13 +122,41 @@
   color: #d9534f;
   font-weight: bold;
 }
-.branch-heading {
-  text-align: center; /* Center the text */
-  font-size: 24px; /* Font size */
-  font-weight: bold; /* Make the font bold */
-  margin: 10px 0; /* Space above and below the heading */
-  border-bottom: 2px solid #c2c2c2; /* Underline color and thickness */
-  padding-bottom: 10px; /* Space between text and underline */
+
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.btn-submit {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background-color: #45a049;
+}
+
+.btn-cancel {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-cancel:hover {
+  background-color: #e53935;
 }
 
 .loading-message {

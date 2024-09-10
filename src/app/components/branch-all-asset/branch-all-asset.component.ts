@@ -39,13 +39,19 @@ export interface Group {
   branch_id: number;
 }
 
+export interface Group2 {
+  group_id: number;
+  group_name: string;
+  stock_in_hand: number;
+  user_group: string;
+}
 
 @Component({
-  selector: 'app-asset-branch',
-  templateUrl: './asset-branch.component.html',
-  styleUrls: ['./asset-branch.component.css']
+  selector: 'app-branch-all-asset',
+  templateUrl: './branch-all-asset.component.html',
+  styleUrls: ['./branch-all-asset.component.css']
 })
-export class AssetBranchComponent implements OnInit {
+export class BranchAllAssetComponent implements OnInit {
 
   assets: Asset[] = [];
   viewAssetsForm!: FormGroup;  // For viewing assets
@@ -53,7 +59,7 @@ export class AssetBranchComponent implements OnInit {
   isEdit: boolean = false;
   editAssetId: number | null = null;
   branches: Branch[] = [];
-  groups: Group[] = [];
+  groups: Group2[] = [];
   subBranchOptions: string[] = [];
   noDataFound: boolean = false;
   isBranchDisabled = true;
@@ -114,30 +120,20 @@ export class AssetBranchComponent implements OnInit {
     this.viewAssetsForm.get('branch_id')?.updateValueAndValidity();
   }
 
-  // if (userType === 'fad') {
-  //   this.isBranchUser = false;
-  //   this.viewAssetsForm.get('branch_id')?.setValidators(Validators.required);
-  //   this.viewAssetsForm.get('branch_id')?.updateValueAndValidity();
-  // }
-
   // this.editAssetForm.get('branch_id')?.disable();
   // this.editAssetForm.get('group_id')?.disable();
   // this.editAssetForm.get('sub_branch')?.disable();
 
   this.isBranchDisabled = true;
 }
+
 loadBranches(): void {
   this.branchService.getBranches().subscribe((data: Branch[]) => {
     const userType = localStorage.getItem('user_type');
 
     if (userType === 'superadmin') {
       this.branches = data;
-    }
-    else if(userType === 'fad'){
-      this.branches = data;
-    }
-
-     else {
+    } else {
       const branchId = localStorage.getItem('branch_id');
       if (branchId) {
         const branchIdNum = parseInt(branchId, 10);
@@ -150,8 +146,20 @@ loadBranches(): void {
 }
 
 loadGroups(): void {
-  this.groupService.getGroups().subscribe((data: Group[]) => {
-    this.groups = data;
+  this.groupService.getGroups2().subscribe(data => {
+    const userType = localStorage.getItem('user_type');
+
+   
+    console.log('User Type:', userType);
+
+    if (userType === 'branch') {
+     this.groups = data.filter(group => group.user_group === 'branch');
+    } else {
+      
+      this.groups = data;
+    }
+
+    console.log('Filtered Groups:', this.groups);
   });
 }
 
@@ -173,7 +181,7 @@ onBranchChange(event: Event): void {
     ];
     this.viewAssetsForm.get('sub_branch')?.enable();
   } else {
-    this.subBranchOptions = ['N/A'];
+    this.subBranchOptions = ['Select Division'];
     this.viewAssetsForm.get('sub_branch')?.disable();
     this.viewAssetsForm.patchValue({ sub_branch: 'Select Division' });
   }

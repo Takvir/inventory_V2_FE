@@ -15,7 +15,8 @@ export class BranchComponent implements OnInit {
   branchForm!: FormGroup;
   totalBranches: number = 0;
   branchId: string | null = null;
-  editingBranchId: number | null = null; // Store the ID of the branch being edited
+  editingBranchId: number | null = null;
+  userType: string | null = null;
 
   @ViewChild('addBranchDialog')
   addBranchDialog!: TemplateRef<any>;
@@ -38,6 +39,9 @@ export class BranchComponent implements OnInit {
     this.loadBranches();
     this.loaduser();
     this.branchId = this.route.snapshot.paramMap.get('branchID');
+    this.userType = localStorage.getItem('user_type');
+   
+    
   }
 
   loadBranches(): void {

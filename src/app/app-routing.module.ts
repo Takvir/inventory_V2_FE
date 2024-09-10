@@ -19,6 +19,7 @@ import { RepairComponent } from './components/repair/repair.component';
 import { RepairListComponent } from './components/repair-list/repair-list.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CsdTagComponent } from './components/csd-tag/csd-tag.component';
+import { BranchAllAssetComponent } from './components/branch-all-asset/branch-all-asset.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'repair-list', component: RepairListComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'csd-tag', component: CsdTagComponent, canActivate: [AuthGuard] },
+  { path: 'branch-all-asset', component: BranchAllAssetComponent, canActivate: [AuthGuard] },
   
 ];
 

@@ -12,6 +12,7 @@ export class AppComponent implements AfterViewInit {
   reportOpen = false;
   navOpen = false;
   repairOpen = false;
+  stockOpen = false;
 
   isLoginPage = false;
   userType: string | null = null;
@@ -44,6 +45,10 @@ export class AppComponent implements AfterViewInit {
 
   toggleReport() {
     this.reportOpen = !this.reportOpen;
+  }
+
+  toggleStock() {
+    this.stockOpen = !this.stockOpen;
   }
 
   toggleRepair() {

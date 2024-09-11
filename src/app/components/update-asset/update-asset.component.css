@@ -81,9 +81,16 @@
   }
   
   /* Table headers and cells */
-  .asset-table th, .asset-table td {
+  .asset-table th {
     border: 1px dotted #1a0f0f;
-    padding: 6px;
+    padding: 4px;
+    text-align: center;
+    font-size: 11px;
+  }
+
+  .asset-table td {
+    border: 1px dotted #1a0f0f;
+    padding: 4px;
     text-align: center;
     font-size: 11px;
   }

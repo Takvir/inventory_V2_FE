@@ -205,12 +205,14 @@ export class OldEquipmentComponent implements OnInit {
         this.loadAssets();
         this.resetForm();
         window.confirm('Asset updated successfully!');
+        
       });
     } else {
       this.assetService.addAsset(asset).subscribe(() => {
         this.loadAssets();
         this.resetForm();
         window.confirm('Asset added successfully!');
+        window.location.reload();
       });
     }
   }

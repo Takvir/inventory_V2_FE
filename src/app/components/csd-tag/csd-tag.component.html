@@ -51,7 +51,7 @@
             <tr>
               <th>S. No.</th>
               <th class="text-center">Location</th>
-              <th>Department/Division</th>
+              <th>Dept./Div.</th>
               <th>Asset Type</th>
               <th>Device Name</th>
               <th>Configuration</th>
@@ -59,8 +59,8 @@
               <th>Tag Name</th>
               <th>Warranty (End of Support)</th>
               <th>Purchase Date</th>
-              <th>Status</th>
-              <th>Operating System</th>
+              <!-- <th>Status</th> -->
+              <th>OS</th>
               <th>RAM</th>
               <th>Storage</th>
               <th>Work Order</th>
@@ -84,7 +84,7 @@
               <td [ngClass]="{ 'text-blue-500 font-semibold font-sans': isRoutedToCSD(asset.purchase_date) }">
                 {{ asset.purchase_date }}
               </td>
-              <td>{{ asset.status }}</td>
+              <!-- <td>{{ asset.status }}</td> -->
               <td>{{ asset.OS }}</td>
               <td>{{ asset.RAM }}</td>
               <td>{{ asset.Storage }}</td>
@@ -199,9 +199,9 @@
           <div class="form-group mb-4 w-full sm:w-1/2 px-2">
             <label for="status" class="block text-gray-700">Status:</label>
             <select id="status" formControlName="status" class="form-control" [attr.disabled]="isStatus ? true : null">
-                <option value="Active">Active</option>
-                <option value="InActive">InActive</option>
-                <option value="Faulty">Faulty</option>
+                <option value="Active">In Use</option>
+                <option value="InActive">In Stock</option>
+                <option value="Faulty">Out of Order</option>
               </select>
           </div>
 

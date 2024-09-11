@@ -55,7 +55,7 @@
           <!-- <th>ID</th> -->
           <th>S. No.</th>
           <th>Location</th>
-          <th>Department/Division</th>
+          <th>Dept./Div.</th>
           <th>Asset Type</th>
           <th>Device Name</th>
           <th>Configuration</th>
@@ -64,7 +64,7 @@
           
           <th>Price</th>
           
-          <th>Status</th>
+          <!-- <th>Status</th> -->
           <th>Asset Value</th>
         
           <th>Purchase Date</th>
@@ -94,7 +94,7 @@
           <td [ngClass]="{'text-blue-500 font-semibold font-sans': isValueNaN(asset.price)}">{{ asset.price }}</td>
 
           
-          <td>{{ asset.status }}</td>
+          <!-- <td>{{ asset.status }}</td> -->
           <td>{{ calculateAssetValue(asset.purchase_date, asset.price) }}</td>
 
           <td [ngClass]="{'text-blue-500 font-semibold font-sans': isRoutedToCSD(asset.purchase_date)}">

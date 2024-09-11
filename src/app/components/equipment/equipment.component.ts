@@ -168,7 +168,8 @@ export class EquipmentComponent implements OnInit {
       this.assetService.addAsset(asset).subscribe(() => {
         this.loadAssets();
         this.resetForm();
-        window.confirm('Asset added successfully!'); // Success message
+        window.confirm('Stock added successfully!'); // Success message
+        window.location.reload();
       });
     }
   }

@@ -8,7 +8,7 @@ import { Observable, BehaviorSubject, tap, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService implements OnInit{
-  private apiUrl = 'http://10.71.101.102:3000/api/auth/login';
+  private apiUrl = 'http://11.11.7.41:3000/api/auth/login';
   private tokenSubject = new BehaviorSubject<string | null>(null);
   private userTypeSubject = new BehaviorSubject<string | null>(null);
 

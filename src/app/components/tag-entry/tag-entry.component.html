@@ -43,7 +43,7 @@
   </div>
 
   <div *ngIf="!loading" class="loading-message">
-    Please Select Branch , Asset Group for Loading Data ... 
+    Please Select Branch , Asset Type for Loading Data ... 
   </div>
 
 
@@ -56,7 +56,7 @@
           <th>S. No.</th>
           <th>Location</th>
           <th>Department/Division</th>
-          <th>Asset Group</th>
+          <th>Asset Type</th>
           <th>Device Name</th>
           <th>Configuration</th>
           <th>Serial Number</th>
@@ -143,7 +143,7 @@
         </div>
 
         <div class="form-group mb-4 w-full sm:w-1/2 px-2">
-          <label for="group" class="block text-gray-700">Asset Group:</label>
+          <label for="group" class="block text-gray-700">Asset Type:</label>
           <select id="group" formControlName="group_id" class="form-control mt-1 w-full" [attr.disabled]="isGroupDisabled ? true : null">
             <option *ngFor="let group of groups" [value]="group.group_id">{{ group.group_name }}</option>
           </select>

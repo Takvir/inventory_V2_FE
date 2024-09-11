@@ -258,12 +258,17 @@ export class OldEquipmentComponent implements OnInit {
 
       if (selectedBranch.branch_name === 'Head Office') {
         this.subBranchOptions = [
+          'Select Division',
           'Chairman Sir & MD & CEO Office',
           'Agent Banking',
           'AML & CFT',
           'ICT',
           'ADC',
-          'Card Division'
+          'Card Division',
+          'Human Resource',
+          'FAD',
+          'Bach',
+          'Operation'
         ];
       } else {
         this.subBranchOptions = ['N/A'];

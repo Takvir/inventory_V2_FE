@@ -30,7 +30,7 @@ export interface Asset {
 })
 export class TagAssetService {
 
-  private apiUrl = 'http://11.11.7.41:3000/api/assets';
+  private apiUrl = 'http://10.71.101.102:3000/api/assets';
 
   constructor(private http: HttpClient) { }
 

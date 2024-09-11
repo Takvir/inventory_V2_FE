@@ -24,7 +24,7 @@ export interface Repair {
 })
 
 export class RepairService {
-  private apiUrl = 'http://11.11.7.41:3000/api/repairs';
+  private apiUrl = 'http://10.71.101.102:3000/api/repairs';
 
   constructor(private http: HttpClient) {}
 

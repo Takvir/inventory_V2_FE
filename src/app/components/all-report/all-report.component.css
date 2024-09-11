@@ -1,13 +1,19 @@
-/* Table container */
-div {
-  overflow-x: auto; /* Ensure table is scrollable on small screens */
+/* Table container styling for scroll */
+.table-container {
+  max-height: 500px; /* Set maximum height for vertical scrolling */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  margin-top: 5px;
+  width: 100%;
+  display: block; /* Ensure the container behaves as a block for proper scroll */
 }
 
 /* Table styling */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 10px;
+  table-layout: auto; /* Allow table to auto-size based on content */
 }
 
 /* Table headers and cells */
@@ -16,6 +22,7 @@ th, td {
   padding: 2px; /* Adjusted padding */
   text-align: center;
   font-size: 12px; /* Smaller text size */
+  white-space: nowrap; /* Prevent wrapping of content */
 }
 
 /* Header styling */
@@ -23,14 +30,9 @@ th {
   background-color: #038334;
   color: #ffffff;
   font-weight: normal;
-  padding: 10px ;
-
+  padding: 10px;
+  position: sticky;
 }
-
-/* Zebra striping for rows */
-/* tr:nth-child(even) {
-  background-color: #f9f9f9;
-} */
 
 /* Hover effect for rows */
 tr:hover {
@@ -42,30 +44,23 @@ thead tr {
   border-bottom: 2px solid #ddd; /* Distinct border for header */
 }
 
-/* Table footer styling */
+/* Footer styling */
 tfoot tr {
-  background-color: #d8e6f0; /* Light green background for totals */
-  color: #007e02; /* Dark green text color */
-
+  background-color: #d8e6f0;
+  color: #007e02;
 }
 
 /* Footer total row styling */
 tfoot td {
-  font-weight: bold; /* Bold text for totals */
-  border-top: 2px solid #ddd; /* Distinct border at the top */
-  padding: 5px; /* Adjusted padding for better appearance */
-}
-/* Download Button Container */
-.download-container {
-  text-align: center;
-  margin-bottom: 10px;
-  margin-top: 15px;
+  font-weight: bold;
+  border-top: 2px solid #ddd;
+  padding: 5px;
 }
 
 /* Download Button */
 .download-button {
   padding: 7px 25px;
-  background-color: #125830; /* Primary blue color */
+  background-color: #125830;
   color: white;
   border: none;
   border-radius: 4px;
@@ -75,11 +70,11 @@ tfoot td {
 }
 
 .download-button:hover {
-  background-color: #02680b; /* Darker blue on hover */
+  background-color: #02680b;
 }
 
 .search-container {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-align: center;
   color: black;
 }

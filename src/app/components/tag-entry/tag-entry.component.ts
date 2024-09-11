@@ -175,7 +175,11 @@ export class TagEntryComponent implements OnInit {
         'AML & CFT',
         'ICT',
         'ADC',
-        'Card Division'
+        'Card Division',
+        'Human Resource',
+        'FAD',
+        'Bach',
+        'Operation'
       ];
       this.viewAssetsForm.get('sub_branch')?.enable();
     } else {

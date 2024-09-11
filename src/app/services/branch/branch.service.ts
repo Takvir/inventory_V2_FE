@@ -12,7 +12,7 @@ export interface Branch {
   providedIn: 'root'
 })
 export class BranchService {
-  private apiUrl = 'http://11.11.7.41:3000/api/branches/';
+  private apiUrl = 'http://10.71.101.102:3000/api/branches/';
 
   constructor(private http: HttpClient) { }
 

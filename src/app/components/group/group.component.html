@@ -1,6 +1,6 @@
 <div>
   <div class="text-center mb-4">
-    <h1 class="text-xl font-bold mb-2 inline-block border-b-2 border-gray-300">Asset Group</h1>
+    <h1 class="text-xl font-bold mb-2 inline-block border-b-2 border-gray-300">Asset Type</h1>
   </div>
   <button (click)="openModal()" class="bg-green-900 text-white px-4 py-2 rounded hover:bg-green-600 transition">
     Add New Group
@@ -9,7 +9,7 @@
     <thead>
       <tr class="bg-gray-100 text-gray-600 border-b text-center">
         <th class="py-1 px-2 ">Group ID</th>
-        <th class="py-1 px-4 ">Asset Group</th>
+        <th class="py-1 px-4 ">Asset Type</th>
         <th class="py-1 px-4 ">Stock In Hand</th>
         <th class="py-1 px-4 ">User Group</th>
         <th class="py-1 px-4 ">Actions</th>
@@ -43,7 +43,7 @@
           <input formControlName="group_id" class="mt-1 block w-full border border-gray-300 py-1" [attr.disabled]="selectedGroup ? true : null" />
         </label>
         <label class="block mb-2">
-          <span class="text-gray-700">Asset Group:</span>
+          <span class="text-gray-700">Asset Type:</span>
           <input formControlName="group_name" class="mt-1 block w-full border border-gray-300 py-1  " />
         </label>
         <label class="block mb-4">

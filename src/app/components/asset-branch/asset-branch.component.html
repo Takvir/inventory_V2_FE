@@ -41,7 +41,7 @@
   </div>
 
   <div *ngIf="!loading" class="loading-message">
-    Please Select Branch , Asset Group for Loading Data ... 
+    Please Select Branch , Asset Type for Loading Data ... 
   </div>
 
   <div class="table-container">
@@ -52,14 +52,14 @@
             <th>S. No.</th>
             <th class="text-center">Location</th>
             <th>Department/Division</th>
-            <th>Asset Group</th>
+            <th>Asset Type</th>
             <th>Device Name</th>
             <th>Configuration</th>
             <th>Serial Number</th>
             <th>Tag Name</th>
             <th>Warranty (End of Support)</th>
             <th>Purchase Date</th>
-            <th>Status</th>
+            
             <th>Operating System</th>
             <th>RAM</th>
             <th>Storage</th>
@@ -84,7 +84,7 @@
             <td [ngClass]="{ 'text-blue-500 font-semibold font-sans': isRoutedToCSD(asset.purchase_date) }">
               {{ asset.purchase_date }}
             </td>
-            <td>{{ asset.status }}</td>
+  
             <td>{{ asset.OS }}</td>
             <td>{{ asset.RAM }}</td>
             <td>{{ asset.Storage }}</td>
@@ -136,7 +136,7 @@
       <div class="form-row">
 
         <div class="form-group mb-4 w-full sm:w-1/2 px-2">
-          <label for="group" class="block text-gray-700">Asset Group:</label>
+          <label for="group" class="block text-gray-700">Asset Type:</label>
           <select id="group" formControlName="group_id" class="form-control mt-1 w-full" [attr.disabled]="isGroupDisabled ? true : null">
             <option *ngFor="let group of groups" [value]="group.group_id">{{ group.group_name }}</option>
           </select>

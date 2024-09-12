@@ -205,7 +205,7 @@ export class OldEquipmentComponent implements OnInit {
         this.loadAssets();
         this.resetForm();
         window.confirm('Asset updated successfully!');
-        
+
       });
     } else {
       this.assetService.addAsset(asset).subscribe(() => {
@@ -260,17 +260,34 @@ export class OldEquipmentComponent implements OnInit {
 
       if (selectedBranch.branch_name === 'Head Office') {
         this.subBranchOptions = [
-          'Select Division',
-          'Chairman Sir & MD & CEO Office',
-          'Agent Banking',
-          'AML & CFT',
-          'ICT',
-          'ADC',
-          'Card Division',
-          'Human Resource',
-          'FAD',
-          'Bach',
-          'Operation'
+        'Select Division',
+        'Brand Communication & Public Relations Division',
+        'Common Services Division',
+        'Corporate & Investment Banking Division',
+        'Credit Administration Division',
+        'Chairman Sir & MD & CEO Office',
+        'Credit Risk Management Division',
+        'Agent Banking',
+        'AML & CFT',
+        'ICT',
+        'ADC',
+        'Card Division',
+        'Human Resource',
+        'FAD',
+        'Bach',
+        'Operation',
+        'Internal Control & Compliance Division',
+        'International Division',
+        'Loan Recovery Division',
+        'Mobile Financial Services Division',
+        'Retail Banking Division',
+        'Risk Management Division',
+        'RPD & MIS Division',
+        'SME Division',
+        'Trade Services Division',
+        'Treasury Back Office', 
+        'Treasury Front Office', 
+        'Treasury Mid Office',
         ];
       } else {
         this.subBranchOptions = ['N/A'];
@@ -427,6 +444,9 @@ export class OldEquipmentComponent implements OnInit {
 
       if (userType === 'superadmin') {
         // Superadmin sees all branches
+        this.branches = data;
+      }
+      else if(userType === 'fad'){
         this.branches = data;
       } else {
         // Filter branches based on the branch_id stored in localStorage

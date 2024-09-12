@@ -59,6 +59,7 @@ export class EquipmentComponent implements OnInit {
   isPrinterBranchGroup: boolean = false;
   isIpPhoneSetGroup: boolean = false;
   isOfflineUpsGroup: boolean = false;
+  userType: string | null = null;
 
 
 
@@ -101,6 +102,8 @@ export class EquipmentComponent implements OnInit {
     this.loadGroups();
     this.loadAssets();
     this.setBranchFromLocalStorage();
+
+    this.userType = localStorage.getItem('user_type'); 
   }
 
   // loadBranches(): void {
@@ -380,7 +383,11 @@ export class EquipmentComponent implements OnInit {
       if (userType === 'superadmin') {
         // Superadmin sees all branches
         this.branches = data;
-      } else {
+      }
+      else if(userType === 'fad'){
+        this.branches = data;
+      }
+       else {
         // Filter branches based on the branch_id stored in localStorage
         const branchId = localStorage.getItem('branch_id');
         if (branchId) {

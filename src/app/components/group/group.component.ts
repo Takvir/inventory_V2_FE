@@ -20,6 +20,7 @@ export class GroupComponent implements OnInit {
   groupForm!: FormGroup;
   selectedGroup: Group2 | null = null;
   isModalOpen = false;
+  userType: string | null = null;
 
   constructor(private groupService: GroupService, private fb: FormBuilder) { 
     this.groupForm = this.fb.group({
@@ -32,6 +33,7 @@ export class GroupComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadGroups();
+    this.userType = localStorage.getItem('user_type');
   }
 
   loadGroups(): void {

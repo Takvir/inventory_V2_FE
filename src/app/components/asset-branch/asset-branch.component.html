@@ -44,6 +44,9 @@
     Please Select Branch , Asset Type for Loading Data ... 
   </div>
 
+  <div *ngIf="assets.length > 0" class="total-assets mt-8 font-bold">
+    <p>Total Stock Assets: {{ assets.length }}</p>
+  </div>
   <div class="table-container">
     <div *ngIf="assets.length > 0">
       <table class="asset-table">

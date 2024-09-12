@@ -102,7 +102,11 @@ export class DashboardComponent implements OnInit {
 
       if (userType === 'superadmin') {
         this.branches = data;
-      } else {
+      }
+      else if(userType === 'fad'){
+        this.branches = data;
+      }
+       else {
         const branchId = localStorage.getItem('branch_id');
         if (branchId) {
           const branchIdNum = parseInt(branchId, 10);

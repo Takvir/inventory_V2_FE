@@ -133,7 +133,11 @@ loadBranches(): void {
 
     if (userType === 'superadmin') {
       this.branches = data;
-    } else {
+    }
+    else if(userType === 'fad'){
+      this.branches = data;
+    } 
+    else {
       const branchId = localStorage.getItem('branch_id');
       if (branchId) {
         const branchIdNum = parseInt(branchId, 10);
@@ -172,7 +176,12 @@ onBranchChange(event: Event): void {
   if (selectedBranch && selectedBranch.branch_name === 'Head Office') {
     this.subBranchOptions = [
       'Select Division',
+      'Brand Communication & Public Relations Division',
+      'Common Services Division',
+      'Corporate & Investment Banking Division',
+      'Credit Administration Division',
       'Chairman Sir & MD & CEO Office',
+      'Credit Risk Management Division',
       'Agent Banking',
       'AML & CFT',
       'ICT',
@@ -181,7 +190,19 @@ onBranchChange(event: Event): void {
       'Human Resource',
       'FAD',
       'Bach',
-      'Operation'
+      'Operation',
+      'Internal Control & Compliance Division',
+      'International Division',
+      'Loan Recovery Division',
+      'Mobile Financial Services Division',
+      'Retail Banking Division',
+      'Risk Management Division',
+      'RPD & MIS Division',
+      'SME Division',
+      'Trade Services Division',
+      'Treasury Back Office', 
+      'Treasury Front Office', 
+      'Treasury Mid Office',
     ];
     this.viewAssetsForm.get('sub_branch')?.enable();
   } else {

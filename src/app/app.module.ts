@@ -39,6 +39,7 @@ import { RepairListComponent } from './components/repair-list/repair-list.compon
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CsdTagComponent } from './components/csd-tag/csd-tag.component';
 import { BranchAllAssetComponent } from './components/branch-all-asset/branch-all-asset.component';
+import { BranchReporComponent } from './components/branch-repor/branch-repor.component';
 
 
 
@@ -72,6 +73,7 @@ import { BranchAllAssetComponent } from './components/branch-all-asset/branch-al
     DashboardComponent,
     CsdTagComponent,
     BranchAllAssetComponent,
+    BranchReporComponent,
     
   
 

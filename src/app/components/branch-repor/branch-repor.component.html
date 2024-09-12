@@ -1,0 +1,30 @@
+<div *ngIf="assets.length > 0" class="table-container">
+
+    <div class="text-center mb-4">
+        <h1 class="text-xl font-bold mb-2 inline-block border-b-2 border-gray-300">Branch List</h1>
+      </div>
+      
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Location</th>
+         
+          <th *ngFor="let header of tableHeaders">{{ header }}</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ userType === 'branch' ? 'Branch' : 'Head Office' }}</td>
+       
+          <td *ngFor="let header of tableHeaders">{{ reportData[header] || 0 }}</td>
+          <td>{{ assets.length }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div *ngIf="noDataFound" class="no-data-message">
+    <p>No data found.</p>
+  </div>
+  

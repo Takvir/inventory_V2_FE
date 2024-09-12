@@ -1,0 +1,19 @@
+.table-container {
+    max-height: 550px; /* Set the maximum height for the scrollable area */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    border: 1px solid #ddd; /* Optional: Add border around the scrollable container */
+  }
+  
+  .group-table th, 
+  .group-table td {
+    white-space: nowrap; /* Prevent table cells from wrapping text */
+  }
+
+  .btn-disabled {
+    background-color: #d3d3d3; /* Light gray background */
+    color: black; /* Dark gray text */
+    cursor: not-allowed; /* Show a not-allowed cursor */
+    border: 1px solid #c0c0c0; /* Light gray border */
+  
+  }
+  

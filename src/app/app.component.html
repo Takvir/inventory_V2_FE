@@ -29,7 +29,7 @@
 
 
 
-        <li class="border-b border-gray-500 text-sm">
+        <li class="border-b border-gray-500 text-sm" *ngIf="userType !== 'fad'">
           <a routerLink="/old-entry" routerLinkActive="font-bold bg-cyan-700" class="block py-2 px-4 hover:bg-cyan-700 flex items-center">
             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h16M4 5v14a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H6a2 2 0 00-2 2z" />
@@ -95,7 +95,7 @@
         </li>
 
 
-        <li class="relative text-sm" *ngIf="userType !== 'branch'">
+        <li class="relative text-sm" *ngIf="userType !== 'branch' && userType !== 'fad'">
           <button (click)="toggleStock()" class="block py-3 px-2 w-full text-center hover:bg-cyan-700 focus:outline-none flex items-center justify-between">
             <span class="ml-5">STOCK HOUSE</span>
             <svg [ngClass]="{'rotate-180': stockOpen}" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -111,7 +111,7 @@
         
     
 
-        <li class="relative text-sm" >
+        <li class="relative text-sm"  *ngIf="userType !== 'branch' && userType !== 'fad'">
           <button (click)="toggleRepair()" class="block py-2 px-2 w-full text-center hover:bg-cyan-700 focus:outline-none flex items-center justify-between">
             <span class="ml-5">REPAIR</span>
             <svg [ngClass]="{'rotate-180': repairOpen}" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -120,7 +120,7 @@
           </button>
           <ul [ngClass]="{'hidden': !repairOpen}" class="bg-cyan-800 border border-gray-700 mt-1 text-sm">
             <li><a routerLink="/repair" routerLinkActive="font-bold bg-cyan-700" class="block py-2 px-4 hover:bg-cyan-700"><span class="ml-5">ADD REPAIR</span></a></li>
-            <li *ngIf="userType !== 'branch'"><a routerLink="/repair-list" routerLinkActive="font-bold bg-cyan-700" class="block py-2 px-4 hover:bg-cyan-700"><span class="ml-5">REPAIR LIST</span></a></li>
+            <li><a routerLink="/repair-list" routerLinkActive="font-bold bg-cyan-700" class="block py-2 px-4 hover:bg-cyan-700"><span class="ml-5">REPAIR LIST</span></a></li>
 
           </ul>
         </li>
@@ -139,6 +139,25 @@
             <li class="border-b border-gray-700"><a routerLink="/all-asset" routerLinkActive="font-bold bg-cyan-700" class="block py-2 px-4 hover:bg-cyan-700">ALL INFORMATION</a></li>
           </ul>
         </li>
+
+        <li class="border-b border-gray-500 text-sm" *ngIf="userType !== 'superadmin' && userType !== 'fad'">
+          <a routerLink="/repair" routerLinkActive="font-bold bg-cyan-700" class="block py-2 px-4 hover:bg-cyan-700 flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 6h18M3 14h18m-8 4H5v-5h10v5zM4 5V4a1 1 0 011-1h14a1 1 0 011 1v1M7 7v2M7 11v2m0-2v2m3-6v6m-3-6v6m6-6v6" />
+            </svg>
+            REPAIR
+          </a>
+        </li>
+
+        <li class="border-b border-gray-500 text-sm" *ngIf="userType !== 'superadmin' && userType !== 'fad'">
+          <a routerLink="/branch-report" routerLinkActive="font-bold bg-cyan-700" class="block py-2 px-4 hover:bg-cyan-700 flex items-center">
+            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 6h18M3 14h18m-8 4H5v-5h10v5zM4 5V4a1 1 0 011-1h14a1 1 0 011 1v1M7 7v2M7 11v2m0-2v2m3-6v6m-3-6v6m6-6v6" />
+            </svg>
+            BRANCH REPORT
+          </a>
+        </li>
+
       </ul>
     </nav>
 

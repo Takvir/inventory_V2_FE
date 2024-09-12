@@ -93,7 +93,7 @@
               <td [ngClass]="{ 'text-blue-500 font-semibold font-sans': isValueNaN(asset.price) }">{{ asset.price }}</td>
               <td>{{ calculateAssetValue(asset.purchase_date, asset.price) }}</td>
               <td>
-                <button (click)="editAsset(asset.asset_id)" class="bg-green-800 py-0 px-2 rounded-md text-white">Update</button>
+                <button (click)="editAsset(asset.asset_id)" [disabled]="userType == 'fad'" [ngClass]="{ 'btn-disabled': userType == 'fad' }" class="bg-green-800 py-0 px-2 rounded-md text-white">Update</button>
               </td>
             </tr>
           </tbody>

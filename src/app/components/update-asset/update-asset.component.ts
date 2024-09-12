@@ -58,6 +58,7 @@ export class UpdateAssetComponent implements OnInit {
   isBranchDisabled = true;
   isSubBranchDisabled = true;
   isGroupDisabled = true;
+  userType: string | null = null;
 
   loading: boolean = false;
 
@@ -103,8 +104,9 @@ export class UpdateAssetComponent implements OnInit {
     this.loadBranches();
     this.loadGroups();
 
-    const userType = localStorage.getItem('user_type');
-    if (userType === 'branch') {
+    this.userType = localStorage.getItem('user_type'); 
+
+    if (this.userType === 'branch') {
       this.isBranchUser = true;
       this.viewAssetsForm.get('branch_id')?.setValidators(Validators.required);
       this.viewAssetsForm.get('branch_id')?.updateValueAndValidity();
@@ -122,6 +124,9 @@ export class UpdateAssetComponent implements OnInit {
       const userType = localStorage.getItem('user_type');
 
       if (userType === 'superadmin') {
+        this.branches = data;
+      }
+      else if(userType === 'fad'){
         this.branches = data;
       } else {
         const branchId = localStorage.getItem('branch_id');
@@ -150,7 +155,12 @@ export class UpdateAssetComponent implements OnInit {
     if (selectedBranch && selectedBranch.branch_name === 'Head Office') {
       this.subBranchOptions = [
         'Select Division',
+        'Brand Communication & Public Relations Division',
+        'Common Services Division',
+        'Corporate & Investment Banking Division',
+        'Credit Administration Division',
         'Chairman Sir & MD & CEO Office',
+        'Credit Risk Management Division',
         'Agent Banking',
         'AML & CFT',
         'ICT',
@@ -159,7 +169,19 @@ export class UpdateAssetComponent implements OnInit {
         'Human Resource',
         'FAD',
         'Bach',
-        'Operation'
+        'Operation',
+        'Internal Control & Compliance Division',
+        'International Division',
+        'Loan Recovery Division',
+        'Mobile Financial Services Division',
+        'Retail Banking Division',
+        'Risk Management Division',
+        'RPD & MIS Division',
+        'SME Division',
+        'Trade Services Division',
+        'Treasury Back Office', 
+        'Treasury Front Office', 
+        'Treasury Mid Office',
       ];
       this.viewAssetsForm.get('sub_branch')?.enable();
     } else {
